@@ -75,11 +75,6 @@ nav button {
   z-index: 50;
 }
 
-.dropdown:hover > .menu,
-.dropdown:focus-within > .menu {
-  display: block;
-}
-
 .menu a {
   color: var(--text);
   background: transparent;
