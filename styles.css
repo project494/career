@@ -141,6 +141,28 @@ a {
   background: var(--surface-soft);
 }
 
+.noscript-nav .nav-list {
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.noscript-nav .nav-group {
+  display: grid;
+}
+
+.noscript-nav .group-label {
+  font-weight: 800;
+  cursor: default;
+}
+
+.noscript-nav .dropdown-panel {
+  position: static;
+  display: grid;
+  min-width: 12rem;
+  margin-top: 0.2rem;
+  box-shadow: none;
+}
+
 .page-wrap {
   width: min(1040px, calc(100% - 2rem));
   margin: 0 auto;
