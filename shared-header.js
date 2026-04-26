@@ -1,4 +1,5 @@
 (function renderSiteHeader() {
+  const CHATKIT_DOMAIN_KEY = 'domain_pk_69ee7bb808008196896566571ea5d4f60443c7953beeda43';
   const mount = document.getElementById('site-header');
   if (!mount) return;
 
@@ -62,4 +63,56 @@
       </div>
     </header>
   `;
+
+  const ensureChatKitRoot = () => {
+    let root = document.getElementById('chatkit-root');
+    if (root) return root;
+    root = document.createElement('div');
+    root.id = 'chatkit-root';
+    document.body.appendChild(root);
+    return root;
+  };
+
+  const loadChatKitScript = () =>
+    new Promise((resolve, reject) => {
+      if (window.ChatKit) {
+        resolve(window.ChatKit);
+        return;
+      }
+
+      const existing = document.querySelector('script[data-chatkit-script="true"]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(window.ChatKit));
+        existing.addEventListener('error', reject);
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://cdn.platform.openai.com/deployments/chatkit/chatkit.js';
+      script.async = true;
+      script.dataset.chatkitScript = 'true';
+      script.addEventListener('load', () => resolve(window.ChatKit));
+      script.addEventListener('error', reject);
+      document.head.appendChild(script);
+    });
+
+  const initChatKit = async () => {
+    ensureChatKitRoot();
+
+    try {
+      const chatkit = await loadChatKitScript();
+      if (!chatkit || typeof chatkit.create !== 'function') return;
+
+      chatkit.create({
+        mount: '#chatkit-root',
+        api: {
+          domainKey: CHATKIT_DOMAIN_KEY,
+        },
+      });
+    } catch (error) {
+      console.error('ChatKit failed to load:', error);
+    }
+  };
+
+  initChatKit();
 })();
