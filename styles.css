@@ -235,3 +235,13 @@ footer {
     text-align: center;
   }
 }
+
+.group-label {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+#main-content {
+  min-height: 70vh;
+}

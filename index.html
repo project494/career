@@ -3,42 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | My Living Resume</title>
+  <title>My Living Resume App</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
 <header class="site-header">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="nav-ribbon">
-    <a class="brand" href="/index.html">My Living Resume</a>
+    <a class="brand" href="/" data-route>My Living Resume</a>
     <nav aria-label="Primary navigation">
       <ul class="nav-list">
-        <li><a href="/index.html">Home</a></li>
+        <li><a href="/" data-route>Home</a></li>
         <li class="nav-group">
-          <span class="group-label">Work Experience</span>
-          <div class="dropdown-panel" role="menu" aria-label="Work experience pages">
-            <a href="/work/job-1.html">Career 1</a>
-            <a href="/work/job-2.html">Career 2</a>
-            <a href="/work/job-3.html">Career 3</a>
-            <a href="/work/job-4.html">Career 4</a>
-            <a href="/work/job-5.html">Career 5</a>
-            <a href="/work/job-6.html">Career 6</a>
+          <button class="group-label" type="button">Work Experience</button>
+          <div class="dropdown-panel">
+            <a href="/work/job-1" data-route>Career 1</a>
+            <a href="/work/job-2" data-route>Career 2</a>
+            <a href="/work/job-3" data-route>Career 3</a>
+            <a href="/work/job-4" data-route>Career 4</a>
+            <a href="/work/job-5" data-route>Career 5</a>
+            <a href="/work/job-6" data-route>Career 6</a>
           </div>
         </li>
         <li class="nav-group">
-          <span class="group-label">Educational Experience</span>
-          <div class="dropdown-panel" role="menu" aria-label="Education pages">
-            <a href="/education/high-school.html">High School</a>
-            <a href="/education/university.html">University</a>
-            <a href="/education/community-college.html">Community College</a>
+          <button class="group-label" type="button">Educational Experience</button>
+          <div class="dropdown-panel">
+            <a href="/education/high-school" data-route>High School</a>
+            <a href="/education/university" data-route>University</a>
+            <a href="/education/community-college" data-route>Community College</a>
           </div>
         </li>
         <li class="nav-group">
-          <span class="group-label">Personal Projects</span>
-          <div class="dropdown-panel" role="menu" aria-label="Project pages">
-            <a href="/projects/coding-projects.html">Coding Projects</a>
-            <a href="/projects/graphics-portfolio.html">Graphics Portfolio</a>
-            <a href="/projects/writing-samples.html">Writing Samples</a>
+          <button class="group-label" type="button">Personal Projects</button>
+          <div class="dropdown-panel">
+            <a href="/projects/coding-projects" data-route>Coding Projects</a>
+            <a href="/projects/graphics-portfolio" data-route>Graphics Portfolio</a>
+            <a href="/projects/writing-samples" data-route>Writing Samples</a>
           </div>
         </li>
       </ul>
@@ -46,47 +46,9 @@
     <a class="cta-link" href="#contact-notes">Add Contact Info</a>
   </div>
 </header>
-<main id="main-content">
-  <section class="hero card">
-    <p class="eyebrow">Living Resume Website</p>
-    <h1>Welcome — this is the home base for my experience and work.</h1>
-    <p>
-      Use this site as a long-form version of my resume. Every career entry, school experience,
-      and project category has its own page so I can keep adding depth over time.
-    </p>
-    <div class="action-row">
-      <a class="button" href="/work/job-1.html">Start with Work History</a>
-      <a class="button button-secondary" href="/projects/coding-projects.html">View Projects</a>
-    </div>
-  </section>
 
-  <section class="card">
-    <h2>Site Map Overview</h2>
-    <div class="grid">
-      <article class="tile">
-        <h3>Work Experience (6 pages)</h3>
-        <p>Each role gets its own story: responsibilities, impact, tools, and outcomes.</p>
-      </article>
-      <article class="tile">
-        <h3>Educational Experience (3 pages)</h3>
-        <p>Document what you studied, where, and the highlights from each program.</p>
-      </article>
-      <article class="tile">
-        <h3>Personal Projects (3 pages)</h3>
-        <p>Show coding samples, design portfolio highlights, and writing examples.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>About Me Snapshot</h2>
-    <ul>
-      <li>Current role/title: <span class="muted">Add your current professional title</span></li>
-      <li>Location: <span class="muted">Add city/state or remote status</span></li>
-      <li>Career focus: <span class="muted">Add your main skills/industry focus</span></li>
-    </ul>
-  </section>
-</main>
+<main id="main-content"></main>
 <footer id="contact-notes">© 2026 My Living Resume • Add email, LinkedIn, and portfolio links here.</footer>
+<script src="/app.js"></script>
 </body>
 </html>
