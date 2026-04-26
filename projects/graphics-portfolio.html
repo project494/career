@@ -7,66 +7,47 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-<header class="site-header">
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <div class="nav-ribbon">
-    <a class="brand" href="/index.html">My Living Resume</a>
-    <nav aria-label="Primary navigation">
-      <ul class="nav-list">
-        <li><a href="/index.html">Home</a></li>
-        <li class="nav-group">
-          <span class="group-label">Work Experience</span>
-          <div class="dropdown-panel" role="menu" aria-label="Work experience pages">
-            <a href="/work/job-1.html">Career 1</a>
-            <a href="/work/job-2.html">Career 2</a>
-            <a href="/work/job-3.html">Career 3</a>
-            <a href="/work/job-4.html">Career 4</a>
-            <a href="/work/job-5.html">Career 5</a>
-            <a href="/work/job-6.html">Career 6</a>
-          </div>
-        </li>
-        <li class="nav-group">
-          <span class="group-label">Educational Experience</span>
-          <div class="dropdown-panel" role="menu" aria-label="Education pages">
-            <a href="/education/high-school.html">High School</a>
-            <a href="/education/university.html">University</a>
-            <a href="/education/community-college.html">Community College</a>
-          </div>
-        </li>
-        <li class="nav-group">
-          <span class="group-label">Personal Projects</span>
-          <div class="dropdown-panel" role="menu" aria-label="Project pages">
-            <a href="/projects/coding-projects.html">Coding Projects</a>
-            <a href="/projects/graphics-portfolio.html">Graphics Portfolio</a>
-            <a href="/projects/writing-samples.html">Writing Samples</a>
-          </div>
-        </li>
-      </ul>
-    </nav>
-    <a class="cta-link" href="#contact-notes">Add Contact Info</a>
-  </div>
-</header>
-<main id="main-content">
-  <section class="hero card">
-    <p class="eyebrow">Personal Projects</p>
-    <h1>Graphics Portfolio</h1>
-    <p>Show your visual work, tools used, and project context.</p>
-  </section>
-
-  <section class="card">
-    <h2>Featured Items</h2>
+<header>
+  <p class="site-title">My Living Resume</p>
+  <nav aria-label="Main navigation">
     <ul>
-      <li>Add project/sample name and a one-line description.</li>
-      <li>Add project/sample name and a one-line description.</li>
-      <li>Add project/sample name and a one-line description.</li>
+      <li><a href="/index.html">Home</a></li>
+      <li class="dropdown">
+        <button type="button">Work Experience ▾</button>
+        <div class="menu" role="menu">
+          <a href="/work/job-1.html">Career 1</a>
+          <a href="/work/job-2.html">Career 2</a>
+          <a href="/work/job-3.html">Career 3</a>
+          <a href="/work/job-4.html">Career 4</a>
+          <a href="/work/job-5.html">Career 5</a>
+          <a href="/work/job-6.html">Career 6</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button type="button">Educational Experience ▾</button>
+        <div class="menu" role="menu">
+          <a href="/education/high-school.html">High School</a>
+          <a href="/education/university.html">University</a>
+          <a href="/education/community-college.html">Community College</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button type="button">Personal Projects ▾</button>
+        <div class="menu" role="menu">
+          <a href="/projects/coding-projects.html">Coding Projects</a>
+          <a href="/projects/graphics-portfolio.html">Graphics Portfolio</a>
+          <a href="/projects/writing-samples.html">Writing Samples</a>
+        </div>
+      </li>
     </ul>
-  </section>
-
+  </nav>
+</header>
+<main>
   <section class="card">
-    <h2>Links and Artifacts</h2>
-    <p class="muted">Add GitHub links, portfolio URLs, PDFs, or embedded media references.</p>
+    <h1>Graphics Portfolio</h1>
+    <p>Use this page to feature your design, branding, and visual artwork.</p>
   </section>
 </main>
-<footer id="contact-notes">© 2026 My Living Resume • Add email, LinkedIn, and portfolio links here.</footer>
+<footer>© 2026 My Living Resume</footer>
 </body>
 </html>

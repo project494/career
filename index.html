@@ -3,52 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Living Resume App</title>
+  <title>My Living Resume</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-<header class="site-header">
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <div class="nav-ribbon">
-    <a class="brand" href="/" data-route>My Living Resume</a>
-    <nav aria-label="Primary navigation">
-      <ul class="nav-list">
-        <li><a href="/" data-route>Home</a></li>
-        <li class="nav-group">
-          <button class="group-label" type="button">Work Experience</button>
-          <div class="dropdown-panel">
-            <a href="/work/job-1" data-route>Career 1</a>
-            <a href="/work/job-2" data-route>Career 2</a>
-            <a href="/work/job-3" data-route>Career 3</a>
-            <a href="/work/job-4" data-route>Career 4</a>
-            <a href="/work/job-5" data-route>Career 5</a>
-            <a href="/work/job-6" data-route>Career 6</a>
-          </div>
-        </li>
-        <li class="nav-group">
-          <button class="group-label" type="button">Educational Experience</button>
-          <div class="dropdown-panel">
-            <a href="/education/high-school" data-route>High School</a>
-            <a href="/education/university" data-route>University</a>
-            <a href="/education/community-college" data-route>Community College</a>
-          </div>
-        </li>
-        <li class="nav-group">
-          <button class="group-label" type="button">Personal Projects</button>
-          <div class="dropdown-panel">
-            <a href="/projects/coding-projects" data-route>Coding Projects</a>
-            <a href="/projects/graphics-portfolio" data-route>Graphics Portfolio</a>
-            <a href="/projects/writing-samples" data-route>Writing Samples</a>
-          </div>
-        </li>
-      </ul>
-    </nav>
-    <a class="cta-link" href="#contact-notes">Add Contact Info</a>
-  </div>
+<header>
+  <p class="site-title">My Living Resume</p>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li class="dropdown">
+        <button type="button">Work Experience ▾</button>
+        <div class="menu" role="menu">
+          <a href="/work/job-1.html">Career 1</a>
+          <a href="/work/job-2.html">Career 2</a>
+          <a href="/work/job-3.html">Career 3</a>
+          <a href="/work/job-4.html">Career 4</a>
+          <a href="/work/job-5.html">Career 5</a>
+          <a href="/work/job-6.html">Career 6</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button type="button">Educational Experience ▾</button>
+        <div class="menu" role="menu">
+          <a href="/education/high-school.html">High School</a>
+          <a href="/education/university.html">University</a>
+          <a href="/education/community-college.html">Community College</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button type="button">Personal Projects ▾</button>
+        <div class="menu" role="menu">
+          <a href="/projects/coding-projects.html">Coding Projects</a>
+          <a href="/projects/graphics-portfolio.html">Graphics Portfolio</a>
+          <a href="/projects/writing-samples.html">Writing Samples</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
 </header>
+<main>
+  <section class="card">
+    <h1>Welcome to My Living Resume</h1>
+    <p>
+      This website is the starting point for my professional story. Use the navigation above to explore my
+      work history, educational experience, and personal projects.
+    </p>
+    <p class="muted">I'll continue adding details to each section over time.</p>
 
-<main id="main-content"></main>
-<footer id="contact-notes">© 2026 My Living Resume • Add email, LinkedIn, and portfolio links here.</footer>
-<script src="/app.js"></script>
+    <div class="grid">
+      <article class="tile">
+        <strong>6 Career Pages</strong>
+        <p class="muted">A dedicated page for each role.</p>
+      </article>
+      <article class="tile">
+        <strong>3 Education Pages</strong>
+        <p class="muted">High school, university, and community college.</p>
+      </article>
+      <article class="tile">
+        <strong>3 Project Pages</strong>
+        <p class="muted">Coding, graphics portfolio, and writing samples.</p>
+      </article>
+    </div>
+  </section>
+</main>
+<footer>© 2026 My Living Resume</footer>
 </body>
 </html>
