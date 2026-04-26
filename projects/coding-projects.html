@@ -4,50 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coding Projects | My Living Resume</title>
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-<header>
-  <p class="site-title">My Living Resume</p>
-  <nav aria-label="Main navigation">
-    <ul>
-      <li><a href="/index.html">Home</a></li>
-      <li class="dropdown">
-        <button type="button">Work Experience ▾</button>
-        <div class="menu" role="menu">
-          <a href="/work/job-1.html">Career 1</a>
-          <a href="/work/job-2.html">Career 2</a>
-          <a href="/work/job-3.html">Career 3</a>
-          <a href="/work/job-4.html">Career 4</a>
-          <a href="/work/job-5.html">Career 5</a>
-          <a href="/work/job-6.html">Career 6</a>
-        </div>
-      </li>
-      <li class="dropdown">
-        <button type="button">Educational Experience ▾</button>
-        <div class="menu" role="menu">
-          <a href="/education/high-school.html">High School</a>
-          <a href="/education/university.html">University</a>
-          <a href="/education/community-college.html">Community College</a>
-        </div>
-      </li>
-      <li class="dropdown">
-        <button type="button">Personal Projects ▾</button>
-        <div class="menu" role="menu">
-          <a href="/projects/coding-projects.html">Coding Projects</a>
-          <a href="/projects/graphics-portfolio.html">Graphics Portfolio</a>
-          <a href="/projects/writing-samples.html">Writing Samples</a>
-        </div>
-      </li>
-    </ul>
-  </nav>
-</header>
-<main>
-  <section class="card">
-    <h1>Coding Projects</h1>
-    <p>Use this page to showcase your software and coding portfolio projects.</p>
-  </section>
-</main>
-<footer>© 2026 My Living Resume</footer>
+  <div id="site-header"></div>
+  <main id="main-content" class="page-wrap">
+    <section class="hero">
+      <p class="eyebrow">Projects</p>
+      <h1>Coding Projects</h1>
+      <p>Use this portfolio page for software projects, class assignments, experiments, and GitHub repositories that show technical growth.</p>
+    </section>
+    <section class="section">
+      <h2>Featured Work</h2>
+      <div class="grid">
+        <article class="tile">
+          <h3>Project One</h3>
+          <p>Add the problem solved, technology used, and what the finished project demonstrates.</p>
+        </article>
+        <article class="tile">
+          <h3>Project Two</h3>
+          <p>Add a second project summary with a repository link, demo link, or screenshot note.</p>
+        </article>
+        <article class="tile">
+          <h3>Project Three</h3>
+          <p>Add a smaller experiment, coursework artifact, or in-progress build worth discussing.</p>
+        </article>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Technical Notes</h2>
+      <ul>
+        <li>Add languages, frameworks, APIs, databases, or tools used.</li>
+        <li>Add design decisions, constraints, bugs fixed, or lessons learned.</li>
+        <li>Add links to GitHub repositories, live demos, or documentation.</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">Copyright 2026 My Living Resume. Add contact links when ready.</footer>
+  <script src="../shared-header.js"></script>
 </body>
 </html>

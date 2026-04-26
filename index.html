@@ -3,70 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Living Resume</title>
-  <link rel="stylesheet" href="/styles.css" />
+  <title>Home | My Living Resume</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header>
-  <p class="site-title">My Living Resume</p>
-  <nav aria-label="Main navigation">
-    <ul>
-      <li><a href="/index.html">Home</a></li>
-      <li class="dropdown">
-        <button type="button">Work Experience ▾</button>
-        <div class="menu" role="menu">
-          <a href="/work/job-1.html">Career 1</a>
-          <a href="/work/job-2.html">Career 2</a>
-          <a href="/work/job-3.html">Career 3</a>
-          <a href="/work/job-4.html">Career 4</a>
-          <a href="/work/job-5.html">Career 5</a>
-          <a href="/work/job-6.html">Career 6</a>
-        </div>
-      </li>
-      <li class="dropdown">
-        <button type="button">Educational Experience ▾</button>
-        <div class="menu" role="menu">
-          <a href="/education/high-school.html">High School</a>
-          <a href="/education/university.html">University</a>
-          <a href="/education/community-college.html">Community College</a>
-        </div>
-      </li>
-      <li class="dropdown">
-        <button type="button">Personal Projects ▾</button>
-        <div class="menu" role="menu">
-          <a href="/projects/coding-projects.html">Coding Projects</a>
-          <a href="/projects/graphics-portfolio.html">Graphics Portfolio</a>
-          <a href="/projects/writing-samples.html">Writing Samples</a>
-        </div>
-      </li>
-    </ul>
-  </nav>
-</header>
-<main>
-  <section class="card">
-    <h1>Welcome to My Living Resume</h1>
-    <p>
-      This website is the starting point for my professional story. Use the navigation above to explore my
-      work history, educational experience, and personal projects.
-    </p>
-    <p class="muted">I'll continue adding details to each section over time.</p>
+  <div id="site-header"></div>
+  <main id="main-content" class="page-wrap">
+    <section class="hero">
+      <p class="eyebrow">Resume Website</p>
+      <h1>A focused home for career, education, and project work.</h1>
+      <p>
+        This site is a long-form resume foundation designed to grow over time. Each section gives space for role context,
+        achievements, learning history, and portfolio examples without inventing details that should come from the real resume.
+      </p>
+      <div class="action-row">
+        <a class="button" href="work/job-1.html">Start with Work History</a>
+        <a class="button secondary" href="projects/coding-projects.html">View Projects</a>
+      </div>
+    </section>
 
-    <div class="grid">
-      <article class="tile">
-        <strong>6 Career Pages</strong>
-        <p class="muted">A dedicated page for each role.</p>
-      </article>
-      <article class="tile">
-        <strong>3 Education Pages</strong>
-        <p class="muted">High school, university, and community college.</p>
-      </article>
-      <article class="tile">
-        <strong>3 Project Pages</strong>
-        <p class="muted">Coding, graphics portfolio, and writing samples.</p>
-      </article>
-    </div>
-  </section>
-</main>
-<footer>© 2026 My Living Resume</footer>
+    <section class="section">
+      <h2>Site Overview</h2>
+      <div class="grid">
+        <article class="tile">
+          <h3>Work Experience</h3>
+          <p>Six editable pages for individual roles, with space for responsibilities, impact, and tools used.</p>
+        </article>
+        <article class="tile">
+          <h3>Education</h3>
+          <p>Three pages for academic background, coursework, activities, and milestones.</p>
+        </article>
+        <article class="tile">
+          <h3>Projects</h3>
+          <p>Portfolio pages for coding work, visual design, and writing samples.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Profile Snapshot</h2>
+      <dl class="meta-list">
+        <div>
+          <dt>Professional headline</dt>
+          <dd>Future title or career focus</dd>
+        </div>
+        <div>
+          <dt>Location</dt>
+          <dd>City, state, or remote status</dd>
+        </div>
+        <div>
+          <dt>Contact</dt>
+          <dd>Email, LinkedIn, and portfolio links</dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+  <footer class="footer">Copyright 2026 My Living Resume. Add contact links when ready.</footer>
+  <script src="shared-header.js"></script>
 </body>
 </html>
