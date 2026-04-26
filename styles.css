@@ -52,9 +52,9 @@ a {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.05);
+  background: var(--accent-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 10px 22px rgba(17, 24, 39, 0.18);
   backdrop-filter: blur(12px);
 }
 
@@ -69,7 +69,7 @@ a {
 }
 
 .brand {
-  color: var(--ink);
+  color: #ffffff;
   font-weight: 800;
   text-decoration: none;
   white-space: nowrap;
@@ -92,7 +92,7 @@ a {
   padding: 0.42rem 0.62rem;
   border: 0;
   border-radius: 0.45rem;
-  color: var(--ink);
+  color: #ffffff;
   background: transparent;
   font: inherit;
   font-size: 0.94rem;
@@ -104,7 +104,7 @@ a {
 .nav-list a:focus,
 .nav-group:hover .group-label,
 .nav-group:focus-within .group-label {
-  background: var(--surface-soft);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .nav-group {
@@ -132,6 +132,13 @@ a {
 .dropdown-panel a {
   justify-content: flex-start;
   width: 100%;
+  color: var(--ink);
+}
+
+.dropdown-panel a:hover,
+.dropdown-panel a:focus {
+  color: var(--ink);
+  background: var(--surface-soft);
 }
 
 .page-wrap {

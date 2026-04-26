@@ -31,22 +31,22 @@
           <ul class="nav-list">
             <li><a href="${links.home}">Home</a></li>
             <li class="nav-group">
-              <button class="group-label" type="button" aria-haspopup="true">Work Experience</button>
-              <div class="dropdown-panel" role="menu" aria-label="Work experience pages">
+              <button class="group-label" type="button" aria-haspopup="true">Education</button>
+              <div class="dropdown-panel" role="menu" aria-label="Education pages">
+                <a href="${links.highSchool}" role="menuitem">High School</a>
+                <a href="${links.university}" role="menuitem">University</a>
+                <a href="${links.communityCollege}" role="menuitem">Community College</a>
+              </div>
+            </li>
+            <li class="nav-group">
+              <button class="group-label" type="button" aria-haspopup="true">Work Roles</button>
+              <div class="dropdown-panel" role="menu" aria-label="Work role pages">
                 <a href="${links.work1}" role="menuitem">Career 1</a>
                 <a href="${links.work2}" role="menuitem">Career 2</a>
                 <a href="${links.work3}" role="menuitem">Career 3</a>
                 <a href="${links.work4}" role="menuitem">Career 4</a>
                 <a href="${links.work5}" role="menuitem">Career 5</a>
                 <a href="${links.work6}" role="menuitem">Career 6</a>
-              </div>
-            </li>
-            <li class="nav-group">
-              <button class="group-label" type="button" aria-haspopup="true">Education</button>
-              <div class="dropdown-panel" role="menu" aria-label="Education pages">
-                <a href="${links.highSchool}" role="menuitem">High School</a>
-                <a href="${links.university}" role="menuitem">University</a>
-                <a href="${links.communityCollege}" role="menuitem">Community College</a>
               </div>
             </li>
             <li class="nav-group">
