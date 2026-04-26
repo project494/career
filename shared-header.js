@@ -1,4 +1,5 @@
 (function renderSiteHeader() {
+  const CHATKIT_DOMAIN_KEY = 'domain_pk_69ee7bb808008196896566571ea5d4f60443c7953beeda43';
   const mount = document.getElementById('site-header');
   if (!mount) return;
 
@@ -26,35 +27,6 @@
     <header class="site-header">
       <a class="skip-link" href="#main-content">Skip to content</a>
       <div class="nav-ribbon">
-        <a class="brand" href="/index.html">My Living Resume</a>
-        <nav aria-label="Primary navigation">
-          <ul class="nav-list">
-            <li><a href="/index.html">Home</a></li>
-            <li class="nav-group">
-              <button class="group-label" type="button">Work Experience</button>
-              <div class="dropdown-panel">
-                <a href="/work/job-1.html">Career 1</a>
-                <a href="/work/job-2.html">Career 2</a>
-                <a href="/work/job-3.html">Career 3</a>
-                <a href="/work/job-4.html">Career 4</a>
-                <a href="/work/job-5.html">Career 5</a>
-                <a href="/work/job-6.html">Career 6</a>
-              </div>
-            </li>
-            <li class="nav-group">
-              <button class="group-label" type="button">Educational Experience</button>
-              <div class="dropdown-panel">
-                <a href="/education/high-school.html">High School</a>
-                <a href="/education/university.html">University</a>
-                <a href="/education/community-college.html">Community College</a>
-              </div>
-            </li>
-            <li class="nav-group">
-              <button class="group-label" type="button">Personal Projects</button>
-              <div class="dropdown-panel">
-                <a href="/projects/coding-projects.html">Coding Projects</a>
-                <a href="/projects/graphics-portfolio.html">Graphics Portfolio</a>
-                <a href="/projects/writing-samples.html">Writing Samples</a>
         <a class="brand" href="${links.home}">My Living Resume</a>
         <nav aria-label="Primary navigation">
           <ul class="nav-list">
@@ -79,7 +51,7 @@
               </div>
             </li>
             <li class="nav-group">
-              <button class="group-label" type="button" aria-haspopup="true">Projects</button>
+              <button class="group-label" type="button" aria-haspopup="true">Personal Projects</button>
               <div class="dropdown-panel" role="menu" aria-label="Project pages">
                 <a href="${links.coding}" role="menuitem">Coding Projects</a>
                 <a href="${links.graphics}" role="menuitem">Graphics Portfolio</a>
@@ -91,4 +63,56 @@
       </div>
     </header>
   `;
+
+  const ensureChatKitRoot = () => {
+    let root = document.getElementById('chatkit-root');
+    if (root) return root;
+    root = document.createElement('div');
+    root.id = 'chatkit-root';
+    document.body.appendChild(root);
+    return root;
+  };
+
+  const loadChatKitScript = () =>
+    new Promise((resolve, reject) => {
+      if (window.ChatKit) {
+        resolve(window.ChatKit);
+        return;
+      }
+
+      const existing = document.querySelector('script[data-chatkit-script="true"]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(window.ChatKit));
+        existing.addEventListener('error', reject);
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://cdn.platform.openai.com/deployments/chatkit/chatkit.js';
+      script.async = true;
+      script.dataset.chatkitScript = 'true';
+      script.addEventListener('load', () => resolve(window.ChatKit));
+      script.addEventListener('error', reject);
+      document.head.appendChild(script);
+    });
+
+  const initChatKit = async () => {
+    ensureChatKitRoot();
+
+    try {
+      const chatkit = await loadChatKitScript();
+      if (!chatkit || typeof chatkit.create !== 'function') return;
+
+      chatkit.create({
+        mount: '#chatkit-root',
+        api: {
+          domainKey: CHATKIT_DOMAIN_KEY,
+        },
+      });
+    } catch (error) {
+      console.error('ChatKit failed to load:', error);
+    }
+  };
+
+  initChatKit();
 })();
