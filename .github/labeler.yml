@@ -1,0 +1,24 @@
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - README.md
+          - docs/**
+
+github-actions:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/**
+
+resume:
+  - changed-files:
+      - any-glob-to-any-file:
+          - resume/**
+          - "**/*.tex"
+          - "**/*.pdf"
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - package.json
+          - package-lock.json
+          - requirements.txt
