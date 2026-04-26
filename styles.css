@@ -271,6 +271,27 @@ a {
   font-weight: 700;
 }
 
+.company-section {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.company-logo {
+  width: 4.5rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
 .action-row {
   display: flex;
   flex-wrap: wrap;
@@ -339,5 +360,14 @@ a {
 
   .hero h1 {
     max-width: 100%;
+  }
+
+  .company-section {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .company-logo {
+    width: 4rem;
   }
 }
