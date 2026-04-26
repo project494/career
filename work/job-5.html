@@ -7,18 +7,48 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-<div id="site-header"></div>
-<main id="main-content" class="page-wrap">
-  <section class="card landing-card">
-    <h1>Title</h1>
-    <h2 class="subtitle">Subtitle</h2>
-    <p>
-      This is a placeholder paragraph for the Career 5 landing page. Replace this with your real content,
-      accomplishments, and details when you're ready.
-    </p>
+<header>
+  <p class="site-title">My Living Resume</p>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li class="dropdown">
+        <button type="button">Work Experience ▾</button>
+        <div class="menu" role="menu">
+          <a href="/work/job-1.html">Career 1</a>
+          <a href="/work/job-2.html">Career 2</a>
+          <a href="/work/job-3.html">Career 3</a>
+          <a href="/work/job-4.html">Career 4</a>
+          <a href="/work/job-5.html">Career 5</a>
+          <a href="/work/job-6.html">Career 6</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button type="button">Educational Experience ▾</button>
+        <div class="menu" role="menu">
+          <a href="/education/high-school.html">High School</a>
+          <a href="/education/university.html">University</a>
+          <a href="/education/community-college.html">Community College</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button type="button">Personal Projects ▾</button>
+        <div class="menu" role="menu">
+          <a href="/projects/coding-projects.html">Coding Projects</a>
+          <a href="/projects/graphics-portfolio.html">Graphics Portfolio</a>
+          <a href="/projects/writing-samples.html">Writing Samples</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section class="card">
+    <h1>Career 5</h1>
+    <p>This is the placeholder landing page for job 5.</p>
+    <p class="muted">You can later add company name, role title, dates, key achievements, and technologies used.</p>
   </section>
 </main>
 <footer>© 2026 My Living Resume</footer>
-<script src="/shared-header.js"></script>
 </body>
 </html>
