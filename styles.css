@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap');
 
 :root {
-  --bg: #595d66;
-  --surface: #666b75;
-  --surface-muted: #5f6474;
-  --text: #f3f4f6;
-  --muted: #d1d5db;
-  --border: #838995;
-  --primary: #4f46c8;
-  --primary-dark: #312e81;
-  --secondary: #059669;
-  --accent-soft: #1e3a8a;
-  --shadow: 0 14px 30px rgba(9, 12, 23, 0.38);
+  --bg: #acafb3;
+  --surface: #b7bbc4;
+  --surface-muted: #b2b6c2;
+  --text: #13203b;
+  --muted: #42506b;
+  --border: #8f96a5;
+  --primary: #6d28d9;
+  --primary-dark: #4338ca;
+  --secondary: #0d9488;
+  --accent-soft: #0ea5e9;
+  --accent-warm: #f97316;
+  --shadow: 0 14px 30px rgba(28, 36, 56, 0.2);
 
   --font-body: 'Manrope', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-heading: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
@@ -22,14 +23,14 @@
 }
 
 html {
-  font-size: 18pt;
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   color: var(--text);
-  background: radial-gradient(circle at top right, #6b7280, var(--bg));
+  background: radial-gradient(circle at top right, #dbeafe, var(--bg));
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.65;
@@ -83,7 +84,7 @@ a:focus-visible {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.65rem 1rem;
-  background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+  background: linear-gradient(120deg, #2563eb, var(--primary), var(--accent-warm));
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 0.9rem;
   box-shadow: 0 10px 24px rgba(45, 47, 120, 0.25);
@@ -117,7 +118,7 @@ a:focus-visible {
   color: #ffffff;
   text-decoration: none;
   border-radius: 0.5rem;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .nav-list a:hover,
@@ -126,7 +127,7 @@ a:focus-visible {
 .group-label:focus-visible,
 .nav-group:hover .group-label,
 .nav-group:focus-within .group-label {
-  background: rgba(5, 150, 105, 0.44);
+  background: rgba(14, 165, 233, 0.4);
 }
 
 .nav-group {
@@ -187,13 +188,13 @@ a:focus-visible {
   display: grid;
   gap: 1rem;
   padding: clamp(1.5rem, 4vw, 3rem);
-  background: linear-gradient(145deg, #6b7280 0%, var(--surface-muted) 100%);
+  background: linear-gradient(145deg, #dbeafe 0%, #c4b5fd 45%, var(--surface-muted) 100%);
 }
 
 .hero h1 {
   max-width: 15ch;
   margin: 0;
-  color: #e0e7ff;
+  color: #1e1b4b;
   font-size: clamp(2.1rem, 6vw, 4.5rem);
   line-height: 1.02;
 }
@@ -225,7 +226,7 @@ a:focus-visible {
 .card h1,
 .card h2 {
   margin: 0 0 0.7rem;
-  color: #e0e7ff;
+  color: #1e1b4b;
 }
 
 .section :last-child,
@@ -247,7 +248,7 @@ a:focus-visible {
 .tile {
   min-height: 100%;
   padding: 1rem;
-  background: #707684;
+  background: linear-gradient(160deg, #dbeafe, #fde68a);
   border: 1px solid var(--border);
   border-radius: 0.65rem;
 }
@@ -290,8 +291,8 @@ a:focus-visible {
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  color: var(--secondary);
-  background: #065f46;
+  color: #ecfeff;
+  background: linear-gradient(160deg, #0f766e, #0284c7);
   border: 1px solid var(--border);
   border-radius: 0.7rem;
   font-size: 1rem;
@@ -312,8 +313,8 @@ a:focus-visible {
   min-height: 2.6rem;
   padding: 0.55rem 1rem;
   color: #ffffff;
-  background: var(--primary);
-  border: 1px solid var(--primary);
+  background: linear-gradient(120deg, var(--primary), var(--accent-warm));
+  border: 1px solid transparent;
   border-radius: 0.6rem;
   font-weight: 700;
   text-decoration: none;
@@ -321,20 +322,20 @@ a:focus-visible {
 
 .button:hover,
 .button:focus-visible {
-  background: var(--primary-dark);
-  border-color: var(--primary-dark);
+  background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+  border-color: transparent;
 }
 
 .button.secondary {
   color: #dbeafe;
-  background: transparent;
-  border-color: #bfdbfe;
+  background: rgba(255, 255, 255, 0.35);
+  border-color: #7dd3fc;
 }
 
 .button.secondary:hover,
 .button.secondary:focus-visible {
-  background: var(--accent-soft);
-  border-color: var(--primary-dark);
+  background: rgba(14, 165, 233, 0.2);
+  border-color: #0ea5e9;
 }
 
 .footer,
