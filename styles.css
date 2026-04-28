@@ -6,12 +6,12 @@
 :root {
   --bg: #1f242c;
   --surface: #2b313a;
-  --surface-muted: #353c47;
-  --text: #eef2f7;
-  --muted: #c7d2e3;
+  --surface-muted: #323944;
+  --text: #f8fafc;
+  --muted: #d6deea;
   --border: #4b5563;
-  --primary: #a78bfa;
-  --primary-dark: #c4b5fd;
+  --primary: #7c8cff;
+  --primary-dark: #99a6ff;
   --secondary: #5eead4;
   --accent-soft: #38bdf8;
   --accent-warm: #fb923c;
@@ -19,6 +19,13 @@
 
   --font-body: 'Manrope', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-heading: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
+
+  /* Spacing scale */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
 }
 
 * {
@@ -36,7 +43,7 @@ html {
 body {
   margin: 0;
   color: var(--text);
-  background: radial-gradient(circle at top right, #3b4453, var(--bg));
+  background: var(--bg);
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.65;
@@ -256,8 +263,8 @@ a:focus-visible {
 
 .section,
 .card {
-  margin-top: 1.2rem;
-  padding: 1.3rem;
+  margin-top: var(--space-6);
+  padding: var(--space-6);
   background: var(--surface);
 }
 
@@ -265,8 +272,16 @@ a:focus-visible {
 .section h3,
 .card h1,
 .card h2 {
-  margin: 0 0 0.7rem;
+  margin: 0 0 var(--space-3);
   color: var(--text);
+}
+
+.section p {
+  max-width: 68ch;
+}
+
+.section li + li {
+  margin-top: var(--space-2);
 }
 
 .section :last-child,
@@ -291,7 +306,7 @@ a:focus-visible {
 .tile {
   min-height: 100%;
   padding: 1rem;
-  background: linear-gradient(160deg, #3d4656, #51453d);
+  background: var(--surface-muted);
   border: 1px solid var(--border);
   border-radius: 0.65rem;
 }
@@ -326,7 +341,7 @@ a:focus-visible {
 }
 
 .meta-list dt {
-  color: var(--muted);
+  color: #e2e8f0;
   font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -334,7 +349,7 @@ a:focus-visible {
 
 .meta-list dd {
   margin: 0.2rem 0 0;
-  color: #dbeafe;
+  color: var(--text);
   font-weight: 700;
 }
 
@@ -384,7 +399,7 @@ a:focus-visible {
   display: grid;
   place-items: center;
   color: #ecfeff;
-  background: linear-gradient(160deg, #0f766e, #0284c7);
+  background: var(--surface-muted);
   border: 1px solid var(--border);
   border-radius: 0.7rem;
   font-size: 1rem;
@@ -408,7 +423,7 @@ a:focus-visible {
   min-height: 2.6rem;
   padding: 0.55rem 1rem;
   color: #ffffff;
-  background: linear-gradient(120deg, var(--primary), var(--accent-warm));
+  background: var(--primary);
   border: 1px solid transparent;
   border-radius: 0.6rem;
   font-weight: 700;
@@ -417,7 +432,7 @@ a:focus-visible {
 
 .button:hover,
 .button:focus-visible {
-  background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+  background: var(--primary-dark);
   border-color: transparent;
 }
 
@@ -505,6 +520,11 @@ footer {
 
   .hero h1 {
     max-width: 100%;
+    font-size: clamp(1.95rem, 7vw, 2.8rem);
+  }
+
+  .section h2 {
+    font-size: clamp(1.45rem, 5vw, 1.85rem);
   }
 
   .hero--with-image {
