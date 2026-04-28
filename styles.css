@@ -443,6 +443,11 @@ a:focus-visible {
   justify-self: end;
 }
 
+.cert-logo--hero {
+  width: 11rem;
+  height: 11rem;
+}
+
 .company-logo {
   width: 4.5rem;
   aspect-ratio: 1;
