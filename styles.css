@@ -624,27 +624,35 @@ footer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 0.85rem;
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 45%, #ccfbf1 100%);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.26);
 }
 
 .site-footer__grid h2 {
   margin: 0 0 0.35rem;
   font-size: 1rem;
-  color: var(--text);
+  color: #0f172a;
 }
 
 .site-footer__grid section {
   display: grid;
   gap: 0.2rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .site-footer__grid a {
-  color: var(--muted);
+  color: #1f2937;
   text-decoration: none;
 }
 
 .site-footer__grid a:hover,
 .site-footer__grid a:focus-visible {
-  color: var(--primary-dark);
+  color: #0f172a;
   text-decoration: underline;
 }
 
