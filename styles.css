@@ -5,8 +5,8 @@
    ================================================== */
 :root {
   --bg: #0b1530;
-  --surface: #1b2a4a;
-  --surface-muted: #22345d;
+  --surface: #3d5fbe;
+  --surface-muted: #4c70d0;
   --text: #f8fafc;
   --muted: #dbe6ff;
   --border: #3f5b8a;
@@ -315,7 +315,7 @@ a:focus-visible {
 .card {
   margin-top: var(--space-6);
   padding: var(--space-6);
-  background: var(--surface);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(124, 140, 255, 0.88));
 }
 
 .section h2,
@@ -356,7 +356,7 @@ a:focus-visible {
 .tile {
   min-height: 100%;
   padding: 1rem;
-  background: var(--surface-muted);
+  background: linear-gradient(135deg, rgba(76, 112, 208, 0.95), rgba(56, 189, 248, 0.35));
   border: 1px solid var(--border);
   border-radius: 0.65rem;
 }
@@ -386,7 +386,7 @@ a:focus-visible {
 
 .meta-list div {
   padding: 0.85rem;
-  background: var(--surface-muted);
+  background: linear-gradient(140deg, rgba(76, 112, 208, 0.92), rgba(124, 140, 255, 0.7));
   border-radius: 0.65rem;
 }
 
@@ -449,7 +449,7 @@ a:focus-visible {
   display: grid;
   place-items: center;
   color: #ecfeff;
-  background: var(--surface-muted);
+  background: linear-gradient(140deg, rgba(76, 112, 208, 0.92), rgba(56, 189, 248, 0.45));
   border: 1px solid var(--border);
   border-radius: 0.7rem;
   font-size: 1rem;
@@ -472,7 +472,7 @@ a:focus-visible {
   text-decoration: none;
   border: 1px solid var(--border);
   border-radius: 0.75rem;
-  background: linear-gradient(160deg, #3d4656, #51453d);
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.92), rgba(124, 140, 255, 0.9), rgba(251, 146, 60, 0.72));
 }
 
 .cert-card:hover,
