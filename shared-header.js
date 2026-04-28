@@ -13,7 +13,7 @@
     work4: `${prefix}work/job-4.html`,
     work5: `${prefix}work/job-5.html`,
     work6: `${prefix}work/job-6.html`,
-    highSchool: `${prefix}education/gotham-high-school.html`,
+    highSchool: `${prefix}education/high-school.html`,
     university: `${prefix}education/university.html`,
     communityCollege: `${prefix}education/community-college.html`,
     coding: `${prefix}projects/coding-projects.html`,
