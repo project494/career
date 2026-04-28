@@ -10,7 +10,7 @@ Open `index.html` in a browser, or serve the folder with any static file server.
 
 - Home page: `index.html`
 - Work pages: `work/job-1.html` through `work/job-6.html`
-- Education pages: `education/high-school.html`, `education/university.html`, and `education/community-college.html`
+- Education pages: `education/gotham-high-school.html`, `education/university.html`, and `education/community-college.html`
 - Project pages: `projects/coding-projects.html`, `projects/graphics-portfolio.html`, and `projects/writing-samples.html`
 - Shared navigation: `shared-header.js`
 - Site styles: `styles.css`

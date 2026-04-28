@@ -41,7 +41,7 @@ for (let i = 1; i <= 6; i += 1) {
 }
 
 [
-  ['/education/high-school', 'Gotham High School'],
+  ['/education/gotham-high-school', 'Gotham High School'],
   ['/education/university', 'University'],
   ['/education/community-college', 'Community College'],
 ].forEach(([path, title]) => {
