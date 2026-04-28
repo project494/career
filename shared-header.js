@@ -294,16 +294,14 @@
     mount.className = 'footer site-footer';
     mount.setAttribute('aria-label', 'Site footer');
     mount.innerHTML = `
-      <div class="site-footer__contact" aria-label="Contact details">
-        <strong>Contact:</strong>
-        <a href="mailto:${contact.email}">${contact.email}</a>
-        <span>|</span>
-        <a href="tel:+15551234567">${contact.phone}</a>
-        <span>|</span>
-        <a href="${contact.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-
       <nav class="site-footer__grid" aria-label="Footer site links">
+        <section class="site-footer__contact" aria-label="Contact details">
+          <h2>Contact</h2>
+          <a href="mailto:${contact.email}">${contact.email}</a>
+          <a href="tel:+15551234567">${contact.phone}</a>
+          <a href="${contact.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
+        </section>
+
         <section>
           <h2>Home</h2>
           <a href="${links.home}">Homepage</a>
