@@ -25,6 +25,14 @@ Open `index.html` in a browser, or serve the folder with any static file server.
 
 The current content is polished placeholder copy. Swap in real names, dates, links, and measurable achievements when they are ready.
 
+## Resume writing rules
+
+- Use action + outcome phrasing (for example: “Built X that reduced Y by Z%”).
+- Prefer numbers and scope over adjectives.
+- Target one sentence per bullet.
+- Keep date, location, and title formatting consistent.
+- Omit overly personal or irrelevant details.
+
 ## Chat configuration
 
 Chat is **off by default** (including production) and is only initialized when explicitly enabled.
