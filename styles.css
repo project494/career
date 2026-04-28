@@ -82,6 +82,18 @@ a:focus-visible {
   top: 1rem;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ==================================================
    Header and navigation
    ================================================== */
@@ -200,6 +212,19 @@ a:focus-visible {
   width: min(1040px, calc(100% - 2rem));
   margin: 0 auto;
   padding: 2rem 0 3rem;
+}
+
+.home-top-textbox {
+  width: min(1040px, calc(100% - 2rem));
+  margin: 0.75rem auto 0;
+}
+
+.home-top-textbox input {
+  max-width: 14rem;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
 }
 
 .hero,
