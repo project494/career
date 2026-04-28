@@ -296,6 +296,22 @@ a:focus-visible {
   border-radius: 0.65rem;
 }
 
+
+.summary-tile h3 a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.summary-tile h3 a:hover,
+.summary-tile h3 a:focus-visible {
+  text-decoration: underline;
+}
+
+.summary-tile ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
 .meta-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
