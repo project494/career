@@ -19,6 +19,13 @@
 
   --font-body: 'Manrope', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-heading: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
+
+  /* Spacing scale */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
 }
 
 * {
@@ -256,8 +263,8 @@ a:focus-visible {
 
 .section,
 .card {
-  margin-top: 1.2rem;
-  padding: 1.3rem;
+  margin-top: var(--space-6);
+  padding: var(--space-6);
   background: var(--surface);
 }
 
@@ -265,8 +272,16 @@ a:focus-visible {
 .section h3,
 .card h1,
 .card h2 {
-  margin: 0 0 0.7rem;
+  margin: 0 0 var(--space-3);
   color: var(--text);
+}
+
+.section p {
+  max-width: 68ch;
+}
+
+.section li + li {
+  margin-top: var(--space-2);
 }
 
 .section :last-child,
@@ -489,6 +504,11 @@ footer {
 
   .hero h1 {
     max-width: 100%;
+    font-size: clamp(1.95rem, 7vw, 2.8rem);
+  }
+
+  .section h2 {
+    font-size: clamp(1.45rem, 5vw, 1.85rem);
   }
 
   .hero--with-image {
