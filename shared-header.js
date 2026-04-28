@@ -38,15 +38,7 @@
     writing: `${prefix}projects/writing-samples.html`,
   };
 
-  const getAriaCurrent = (href) => {
-    try {
-      const hrefPath = new URL(href, window.location.origin).pathname.replace(/\/$/, '');
-      const currentPath = window.location.pathname.replace(/\/$/, '');
-      return hrefPath === currentPath ? ' aria-current="page"' : '';
-    } catch (error) {
-      return '';
-    }
-  };
+  const normalizePathname = (path) => path.replace(/\/$/, '') || '/';
 
   // ==================================================
   // Shared contact data
@@ -77,7 +69,7 @@
           <nav aria-label="Primary navigation">
             <ul class="nav-list">
               <li>
-                <a href="${links.home}"${getAriaCurrent(links.home)}>Home</a>
+                <a href="${links.home}">Home</a>
               </li>
 
               <!-- Education -->
@@ -97,9 +89,9 @@
                   role="menu"
                   aria-label="Education pages"
                 >
-                  <a href="${links.highSchool}" role="menuitem"${getAriaCurrent(links.highSchool)}>Gotham High School</a>
-                  <a href="${links.university}" role="menuitem"${getAriaCurrent(links.university)}>University of Iowa</a>
-                  <a href="${links.communityCollege}" role="menuitem"${getAriaCurrent(links.communityCollege)}>Community College</a>
+                  <a href="${links.highSchool}" role="menuitem">Gotham High School</a>
+                  <a href="${links.university}" role="menuitem">University of Iowa</a>
+                  <a href="${links.communityCollege}" role="menuitem">Community College</a>
                 </div>
               </li>
 
@@ -120,12 +112,12 @@
                   role="menu"
                   aria-label="Work role pages"
                 >
-                  <a href="${links.work1}" role="menuitem"${getAriaCurrent(links.work1)}>Career 1</a>
-                  <a href="${links.work2}" role="menuitem"${getAriaCurrent(links.work2)}>Career 2</a>
-                  <a href="${links.work3}" role="menuitem"${getAriaCurrent(links.work3)}>Career 3</a>
-                  <a href="${links.work4}" role="menuitem"${getAriaCurrent(links.work4)}>Career 4</a>
-                  <a href="${links.work5}" role="menuitem"${getAriaCurrent(links.work5)}>Career 5</a>
-                  <a href="${links.work6}" role="menuitem"${getAriaCurrent(links.work6)}>Career 6</a>
+                  <a href="${links.work1}" role="menuitem">Career 1</a>
+                  <a href="${links.work2}" role="menuitem">Career 2</a>
+                  <a href="${links.work3}" role="menuitem">Career 3</a>
+                  <a href="${links.work4}" role="menuitem">Career 4</a>
+                  <a href="${links.work5}" role="menuitem">Career 5</a>
+                  <a href="${links.work6}" role="menuitem">Career 6</a>
                 </div>
               </li>
 
@@ -146,9 +138,9 @@
                   role="menu"
                   aria-label="Project pages"
                 >
-                  <a href="${links.coding}" role="menuitem"${getAriaCurrent(links.coding)}>Coding Projects</a>
-                  <a href="${links.graphics}" role="menuitem"${getAriaCurrent(links.graphics)}>Graphics Portfolio</a>
-                  <a href="${links.writing}" role="menuitem"${getAriaCurrent(links.writing)}>Writing Samples</a>
+                  <a href="${links.coding}" role="menuitem">Coding Projects</a>
+                  <a href="${links.graphics}" role="menuitem">Graphics Portfolio</a>
+                  <a href="${links.writing}" role="menuitem">Writing Samples</a>
                 </div>
               </li>
             </ul>
@@ -156,6 +148,29 @@
         </div>
       </header>
     `;
+  };
+
+  const initActiveNavLinks = () => {
+    const navLinks = document.querySelectorAll('.site-header nav a[href]');
+    const currentPathname = normalizePathname(window.location.pathname);
+
+    navLinks.forEach((link) => {
+      try {
+        const linkPathname = normalizePathname(new URL(link.getAttribute('href'), window.location.origin).pathname);
+        const isActive = linkPathname === currentPathname;
+
+        link.classList.toggle('is-active', isActive);
+
+        if (isActive) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      } catch (error) {
+        link.classList.remove('is-active');
+        link.removeAttribute('aria-current');
+      }
+    });
   };
 
   // ==================================================
@@ -284,6 +299,7 @@
   // App initialization
   // ==================================================
   renderHeader();
+  initActiveNavLinks();
   initNavDropdowns();
   renderFooter();
   initChatKit();
