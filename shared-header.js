@@ -2,7 +2,14 @@
   // ==================================================
   // Global constants
   // ==================================================
-  const CHATKIT_DOMAIN_KEY = 'domain_pk_69ee7bb808008196896566571ea5d4f60443c7953beeda43';
+  const CHATKIT_CONFIG = {
+    // Keep chat disabled by default so production pages do not auto-initialize it.
+    defaultEnabled: false,
+    queryParam: 'enableChat',
+    rootId: 'chatkit-root',
+    fallbackId: 'chatkit-fallback',
+    expectedOwner: 'your-user-id',
+  };
 
   // ==================================================
   // Path helpers
@@ -29,6 +36,16 @@
     coding: `${prefix}projects/coding-projects.html`,
     graphics: `${prefix}projects/graphics-portfolio.html`,
     writing: `${prefix}projects/writing-samples.html`,
+  };
+
+  const getAriaCurrent = (href) => {
+    try {
+      const hrefPath = new URL(href, window.location.origin).pathname.replace(/\/$/, '');
+      const currentPath = window.location.pathname.replace(/\/$/, '');
+      return hrefPath === currentPath ? ' aria-current="page"' : '';
+    } catch (error) {
+      return '';
+    }
   };
 
   // ==================================================
@@ -59,8 +76,11 @@
 
           <nav aria-label="Primary navigation">
             <ul class="nav-list">
-              <li><a href="${links.home}">Home</a></li>
+              <li>
+                <a href="${links.home}"${getAriaCurrent(links.home)}>Home</a>
+              </li>
 
+              <!-- Education -->
               <li class="nav-group">
                 <button
                   class="group-label"
@@ -71,13 +91,19 @@
                 >
                   Education
                 </button>
-                <div id="nav-panel-education" class="dropdown-panel" role="menu" aria-label="Education pages">
-                  <a href="${links.highSchool}" role="menuitem">Gotham High School</a>
-                  <a href="${links.university}" role="menuitem">University of Iowa</a>
-                  <a href="${links.communityCollege}" role="menuitem">Community College</a>
+                <div
+                  id="nav-panel-education"
+                  class="dropdown-panel"
+                  role="menu"
+                  aria-label="Education pages"
+                >
+                  <a href="${links.highSchool}" role="menuitem"${getAriaCurrent(links.highSchool)}>Gotham High School</a>
+                  <a href="${links.university}" role="menuitem"${getAriaCurrent(links.university)}>University of Iowa</a>
+                  <a href="${links.communityCollege}" role="menuitem"${getAriaCurrent(links.communityCollege)}>Community College</a>
                 </div>
               </li>
 
+              <!-- Work Roles -->
               <li class="nav-group">
                 <button
                   class="group-label"
@@ -88,16 +114,22 @@
                 >
                   Work Roles
                 </button>
-                <div id="nav-panel-work" class="dropdown-panel" role="menu" aria-label="Work role pages">
-                  <a href="${links.work1}" role="menuitem">Career 1</a>
-                  <a href="${links.work2}" role="menuitem">Career 2</a>
-                  <a href="${links.work3}" role="menuitem">Career 3</a>
-                  <a href="${links.work4}" role="menuitem">Career 4</a>
-                  <a href="${links.work5}" role="menuitem">Career 5</a>
-                  <a href="${links.work6}" role="menuitem">Career 6</a>
+                <div
+                  id="nav-panel-work"
+                  class="dropdown-panel"
+                  role="menu"
+                  aria-label="Work role pages"
+                >
+                  <a href="${links.work1}" role="menuitem"${getAriaCurrent(links.work1)}>Career 1</a>
+                  <a href="${links.work2}" role="menuitem"${getAriaCurrent(links.work2)}>Career 2</a>
+                  <a href="${links.work3}" role="menuitem"${getAriaCurrent(links.work3)}>Career 3</a>
+                  <a href="${links.work4}" role="menuitem"${getAriaCurrent(links.work4)}>Career 4</a>
+                  <a href="${links.work5}" role="menuitem"${getAriaCurrent(links.work5)}>Career 5</a>
+                  <a href="${links.work6}" role="menuitem"${getAriaCurrent(links.work6)}>Career 6</a>
                 </div>
               </li>
 
+              <!-- Personal Projects -->
               <li class="nav-group">
                 <button
                   class="group-label"
@@ -108,10 +140,15 @@
                 >
                   Personal Projects
                 </button>
-                <div id="nav-panel-projects" class="dropdown-panel" role="menu" aria-label="Project pages">
-                  <a href="${links.coding}" role="menuitem">Coding Projects</a>
-                  <a href="${links.graphics}" role="menuitem">Graphics Portfolio</a>
-                  <a href="${links.writing}" role="menuitem">Writing Samples</a>
+                <div
+                  id="nav-panel-projects"
+                  class="dropdown-panel"
+                  role="menu"
+                  aria-label="Project pages"
+                >
+                  <a href="${links.coding}" role="menuitem"${getAriaCurrent(links.coding)}>Coding Projects</a>
+                  <a href="${links.graphics}" role="menuitem"${getAriaCurrent(links.graphics)}>Graphics Portfolio</a>
+                  <a href="${links.writing}" role="menuitem"${getAriaCurrent(links.writing)}>Writing Samples</a>
                 </div>
               </li>
             </ul>
@@ -120,8 +157,6 @@
       </header>
     `;
   };
-
-
 
   // ==================================================
   // Navigation dropdown interactions
@@ -188,7 +223,6 @@
     });
   };
 
-
   // ==================================================
   // Footer renderer
   // ==================================================
@@ -200,6 +234,7 @@
     }
 
     mount.className = 'footer site-footer';
+    mount.setAttribute('aria-label', 'Site footer');
     mount.innerHTML = `
       <div class="site-footer__contact" aria-label="Contact details">
         <strong>Contact:</strong>
@@ -210,7 +245,7 @@
         <a href="${contact.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
       </div>
 
-      <nav class="site-footer__grid" aria-label="Footer links">
+      <nav class="site-footer__grid" aria-label="Footer site links">
         <section>
           <h2>Home</h2>
           <a href="${links.home}">Homepage</a>
@@ -243,68 +278,6 @@
 
       <p class="site-footer__copyright">Copyright 2026 My Living Resume.</p>
     `;
-  };
-
-  // ==================================================
-  // ChatKit setup helpers
-  // ==================================================
-  const ensureChatKitRoot = () => {
-    let root = document.getElementById('chatkit-root');
-
-    if (root) {
-      return root;
-    }
-
-    root = document.createElement('div');
-    root.id = 'chatkit-root';
-    document.body.appendChild(root);
-
-    return root;
-  };
-
-  const loadChatKitScript = () =>
-    new Promise((resolve, reject) => {
-      if (window.ChatKit) {
-        resolve(window.ChatKit);
-        return;
-      }
-
-      const existing = document.querySelector('script[data-chatkit-script="true"]');
-
-      if (existing) {
-        existing.addEventListener('load', () => resolve(window.ChatKit));
-        existing.addEventListener('error', reject);
-        return;
-      }
-
-      const script = document.createElement('script');
-      script.src = 'https://cdn.platform.openai.com/deployments/chatkit/chatkit.js';
-      script.async = true;
-      script.dataset.chatkitScript = 'true';
-      script.addEventListener('load', () => resolve(window.ChatKit));
-      script.addEventListener('error', reject);
-      document.head.appendChild(script);
-    });
-
-  const initChatKit = async () => {
-    ensureChatKitRoot();
-
-    try {
-      const chatkit = await loadChatKitScript();
-
-      if (!chatkit || typeof chatkit.create !== 'function') {
-        return;
-      }
-
-      chatkit.create({
-        mount: '#chatkit-root',
-        api: {
-          domainKey: CHATKIT_DOMAIN_KEY,
-        },
-      });
-    } catch (error) {
-      console.error('ChatKit failed to load:', error);
-    }
   };
 
   // ==================================================
