@@ -24,6 +24,9 @@
   // ==================================================
   const links = {
     home: `${prefix}index.html`,
+    educationHome: `${prefix}education/index.html`,
+    workHome: `${prefix}work/index.html`,
+    projectsHome: `${prefix}projects/index.html`,
     work1: `${prefix}work/job-1.html`,
     work2: `${prefix}work/job-2.html`,
     work3: `${prefix}work/job-3.html`,
@@ -100,6 +103,7 @@
                   role="menu"
                   aria-label="Education pages"
                 >
+                  <a href="${links.educationHome}" role="menuitem"${getAriaCurrent(links.educationHome)}>Education Overview</a>
                   <a href="${links.highSchool}" role="menuitem"${getAriaCurrent(links.highSchool)}>Gotham High School</a>
                   <a href="${links.university}" role="menuitem"${getAriaCurrent(links.university)}>University of Iowa</a>
                   <a href="${links.communityCollege}" role="menuitem"${getAriaCurrent(links.communityCollege)}>Community College</a>
@@ -123,6 +127,7 @@
                   role="menu"
                   aria-label="Work role pages"
                 >
+                  <a href="${links.workHome}" role="menuitem"${getAriaCurrent(links.workHome)}>Work Overview</a>
                   <a href="${links.work1}" role="menuitem"${getAriaCurrent(links.work1)}>Career 1</a>
                   <a href="${links.work2}" role="menuitem"${getAriaCurrent(links.work2)}>Career 2</a>
                   <a href="${links.work3}" role="menuitem"${getAriaCurrent(links.work3)}>Career 3</a>
@@ -141,7 +146,7 @@
                   aria-expanded="false"
                   aria-controls="nav-panel-projects"
                 >
-                  Personal Projects
+                  Projects
                 </button>
                 <div
                   id="nav-panel-projects"
@@ -149,6 +154,7 @@
                   role="menu"
                   aria-label="Project pages"
                 >
+                  <a href="${links.projectsHome}" role="menuitem"${getAriaCurrent(links.projectsHome)}>Projects Overview</a>
                   <a href="${links.coding}" role="menuitem"${getAriaCurrent(links.coding)}>Coding Projects</a>
                   <a href="${links.graphics}" role="menuitem"${getAriaCurrent(links.graphics)}>Graphics Portfolio</a>
                   <a href="${links.writing}" role="menuitem"${getAriaCurrent(links.writing)}>Writing Samples</a>
@@ -279,6 +285,7 @@
 
         <section>
           <h2>Education</h2>
+          <a href="${links.educationHome}">Education Overview</a>
           <a href="${links.highSchool}">Gotham High School</a>
           <a href="${links.university}">University of Iowa</a>
           <a href="${links.communityCollege}">Community College</a>
@@ -286,6 +293,7 @@
 
         <section>
           <h2>Work Roles</h2>
+          <a href="${links.workHome}">Work Overview</a>
           <a href="${links.work1}">Career 1</a>
           <a href="${links.work2}">Career 2</a>
           <a href="${links.work3}">Career 3</a>
@@ -295,7 +303,8 @@
         </section>
 
         <section>
-          <h2>Personal Projects</h2>
+          <h2>Projects</h2>
+          <a href="${links.projectsHome}">Projects Overview</a>
           <a href="${links.coding}">Coding Projects</a>
           <a href="${links.graphics}">Graphics Portfolio</a>
           <a href="${links.writing}">Writing Samples</a>
