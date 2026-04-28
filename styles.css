@@ -4,12 +4,12 @@
    Design tokens
    ================================================== */
 :root {
-  --bg: #1f242c;
-  --surface: #2b313a;
-  --surface-muted: #323944;
+  --bg: #0b1530;
+  --surface: #1b2a4a;
+  --surface-muted: #22345d;
   --text: #f8fafc;
-  --muted: #d6deea;
-  --border: #4b5563;
+  --muted: #dbe6ff;
+  --border: #3f5b8a;
   --primary: #7c8cff;
   --primary-dark: #99a6ff;
   --secondary: #5eead4;
