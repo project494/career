@@ -2,7 +2,14 @@
   // ==================================================
   // Global constants
   // ==================================================
-  const CHATKIT_DOMAIN_KEY = 'domain_pk_69ee7bb808008196896566571ea5d4f60443c7953beeda43';
+  const CHATKIT_CONFIG = {
+    // Keep chat disabled by default so production pages do not auto-initialize it.
+    defaultEnabled: false,
+    queryParam: 'enableChat',
+    rootId: 'chatkit-root',
+    fallbackId: 'chatkit-fallback',
+    expectedOwner: 'your-user-id',
+  };
 
   // ==================================================
   // Path helpers
@@ -156,18 +163,70 @@
   // ==================================================
   // ChatKit setup helpers
   // ==================================================
-  const ensureChatKitRoot = () => {
-    let root = document.getElementById('chatkit-root');
+  const getChatConfig = () => {
+    const script = document.currentScript || document.querySelector('script[src$="shared-header.js"]');
+    const params = new URLSearchParams(window.location.search);
 
-    if (root) {
-      return root;
+    const parseBoolean = (value) => {
+      if (typeof value !== 'string') {
+        return null;
+      }
+
+      const normalized = value.trim().toLowerCase();
+
+      if (['1', 'true', 'yes', 'on'].includes(normalized)) {
+        return true;
+      }
+
+      if (['0', 'false', 'no', 'off'].includes(normalized)) {
+        return false;
+      }
+
+      return null;
+    };
+
+    const queryEnabled = parseBoolean(params.get(CHATKIT_CONFIG.queryParam));
+    const dataEnabled = parseBoolean(script?.dataset.enableChat);
+
+    return {
+      enabled: queryEnabled ?? dataEnabled ?? CHATKIT_CONFIG.defaultEnabled,
+      domainKey: script?.dataset.chatkitDomainKey || '',
+      owner: script?.dataset.chatOwner || '',
+    };
+  };
+
+  const ensureChatKitArea = () => {
+    let root = document.getElementById(CHATKIT_CONFIG.rootId);
+
+    if (!root) {
+      root = document.createElement('section');
+      root.id = CHATKIT_CONFIG.rootId;
+      root.setAttribute('aria-live', 'polite');
+      root.setAttribute('aria-label', 'Chat assistant area');
+      document.body.appendChild(root);
     }
 
-    root = document.createElement('div');
-    root.id = 'chatkit-root';
-    document.body.appendChild(root);
+    let fallback = document.getElementById(CHATKIT_CONFIG.fallbackId);
 
-    return root;
+    if (!fallback) {
+      fallback = document.createElement('p');
+      fallback.id = CHATKIT_CONFIG.fallbackId;
+      fallback.textContent = 'Chat is currently unavailable. Please use the contact links in the footer.';
+      root.appendChild(fallback);
+    }
+
+    return { root, fallback };
+  };
+
+  const hideFallback = (fallback) => {
+    fallback.hidden = true;
+  };
+
+  const showFallback = (fallback, message) => {
+    fallback.hidden = false;
+    if (message) {
+      fallback.textContent = message;
+    }
   };
 
   const loadChatKitScript = () =>
@@ -195,22 +254,41 @@
     });
 
   const initChatKit = async () => {
-    ensureChatKitRoot();
+    const chatConfig = getChatConfig();
+
+    if (!chatConfig.enabled) {
+      return;
+    }
+
+    const { fallback } = ensureChatKitArea();
+
+    if (!chatConfig.domainKey) {
+      showFallback(fallback, 'Chat is enabled, but no domain key is configured.');
+      return;
+    }
+
+    if (!chatConfig.owner || chatConfig.owner !== CHATKIT_CONFIG.expectedOwner) {
+      showFallback(fallback, 'Chat is disabled because this page is not configured for an approved owner.');
+      return;
+    }
 
     try {
       const chatkit = await loadChatKitScript();
 
       if (!chatkit || typeof chatkit.create !== 'function') {
+        showFallback(fallback);
         return;
       }
 
+      hideFallback(fallback);
       chatkit.create({
-        mount: '#chatkit-root',
+        mount: `#${CHATKIT_CONFIG.rootId}`,
         api: {
-          domainKey: CHATKIT_DOMAIN_KEY,
+          domainKey: chatConfig.domainKey,
         },
       });
     } catch (error) {
+      showFallback(fallback);
       console.error('ChatKit failed to load:', error);
     }
   };
