@@ -329,8 +329,8 @@ a:focus-visible {
 }
 
 .school-logo--hero {
-  width: 11rem;
-  height: 11rem;
+  width: clamp(16rem, 32vw, 24rem);
+  height: clamp(16rem, 32vw, 24rem);
   justify-self: end;
 }
 
