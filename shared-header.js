@@ -76,20 +76,50 @@
 
           <nav aria-label="Primary navigation">
             <ul class="nav-list">
-              <li><a href="${links.home}"${getAriaCurrent(links.home)}>Home</a></li>
+              <li>
+                <a href="${links.home}"${getAriaCurrent(links.home)}>Home</a>
+              </li>
 
+              <!-- Education -->
               <li class="nav-group">
-                <button class="group-label" type="button" aria-haspopup="true">Education</button>
-                <div class="dropdown-panel" role="menu" aria-label="Education pages">
+                <button
+                  class="group-label"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="nav-panel-education"
+                >
+                  Education
+                </button>
+                <div
+                  id="nav-panel-education"
+                  class="dropdown-panel"
+                  role="menu"
+                  aria-label="Education pages"
+                >
                   <a href="${links.highSchool}" role="menuitem"${getAriaCurrent(links.highSchool)}>Gotham High School</a>
                   <a href="${links.university}" role="menuitem"${getAriaCurrent(links.university)}>University of Iowa</a>
                   <a href="${links.communityCollege}" role="menuitem"${getAriaCurrent(links.communityCollege)}>Community College</a>
                 </div>
               </li>
 
+              <!-- Work Roles -->
               <li class="nav-group">
-                <button class="group-label" type="button" aria-haspopup="true">Work Roles</button>
-                <div class="dropdown-panel" role="menu" aria-label="Work role pages">
+                <button
+                  class="group-label"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="nav-panel-work"
+                >
+                  Work Roles
+                </button>
+                <div
+                  id="nav-panel-work"
+                  class="dropdown-panel"
+                  role="menu"
+                  aria-label="Work role pages"
+                >
                   <a href="${links.work1}" role="menuitem"${getAriaCurrent(links.work1)}>Career 1</a>
                   <a href="${links.work2}" role="menuitem"${getAriaCurrent(links.work2)}>Career 2</a>
                   <a href="${links.work3}" role="menuitem"${getAriaCurrent(links.work3)}>Career 3</a>
@@ -99,9 +129,23 @@
                 </div>
               </li>
 
+              <!-- Personal Projects -->
               <li class="nav-group">
-                <button class="group-label" type="button" aria-haspopup="true">Personal Projects</button>
-                <div class="dropdown-panel" role="menu" aria-label="Project pages">
+                <button
+                  class="group-label"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="nav-panel-projects"
+                >
+                  Personal Projects
+                </button>
+                <div
+                  id="nav-panel-projects"
+                  class="dropdown-panel"
+                  role="menu"
+                  aria-label="Project pages"
+                >
                   <a href="${links.coding}" role="menuitem"${getAriaCurrent(links.coding)}>Coding Projects</a>
                   <a href="${links.graphics}" role="menuitem"${getAriaCurrent(links.graphics)}>Graphics Portfolio</a>
                   <a href="${links.writing}" role="menuitem"${getAriaCurrent(links.writing)}>Writing Samples</a>
@@ -112,6 +156,71 @@
         </div>
       </header>
     `;
+  };
+
+  // ==================================================
+  // Navigation dropdown interactions
+  // ==================================================
+  const initNavDropdowns = () => {
+    const navGroups = document.querySelectorAll('.nav-group');
+
+    if (!navGroups.length) {
+      return;
+    }
+
+    const closeAllPanels = () => {
+      navGroups.forEach((group) => {
+        group.classList.remove('is-open');
+        const button = group.querySelector('.group-label');
+
+        if (button) {
+          button.setAttribute('aria-expanded', 'false');
+        }
+      });
+    };
+
+    navGroups.forEach((group) => {
+      const button = group.querySelector('.group-label');
+
+      if (!button) {
+        return;
+      }
+
+      const toggleGroup = () => {
+        const isOpen = group.classList.contains('is-open');
+
+        closeAllPanels();
+
+        if (!isOpen) {
+          group.classList.add('is-open');
+          button.setAttribute('aria-expanded', 'true');
+        }
+      };
+
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        toggleGroup();
+      });
+
+      button.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleGroup();
+        }
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.nav-group')) {
+        closeAllPanels();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeAllPanels();
+      }
+    });
   };
 
   // ==================================================
@@ -172,142 +281,10 @@
   };
 
   // ==================================================
-  // ChatKit setup helpers
-  // ==================================================
-  const getChatConfig = () => {
-    const script = document.currentScript || document.querySelector('script[src$="shared-header.js"]');
-    const params = new URLSearchParams(window.location.search);
-
-    const parseBoolean = (value) => {
-      if (typeof value !== 'string') {
-        return null;
-      }
-
-      const normalized = value.trim().toLowerCase();
-
-      if (['1', 'true', 'yes', 'on'].includes(normalized)) {
-        return true;
-      }
-
-      if (['0', 'false', 'no', 'off'].includes(normalized)) {
-        return false;
-      }
-
-      return null;
-    };
-
-    const queryEnabled = parseBoolean(params.get(CHATKIT_CONFIG.queryParam));
-    const dataEnabled = parseBoolean(script?.dataset.enableChat);
-
-    return {
-      enabled: queryEnabled ?? dataEnabled ?? CHATKIT_CONFIG.defaultEnabled,
-      domainKey: script?.dataset.chatkitDomainKey || '',
-      owner: script?.dataset.chatOwner || '',
-    };
-  };
-
-  const ensureChatKitArea = () => {
-    let root = document.getElementById(CHATKIT_CONFIG.rootId);
-
-    if (!root) {
-      root = document.createElement('section');
-      root.id = CHATKIT_CONFIG.rootId;
-      root.setAttribute('aria-live', 'polite');
-      root.setAttribute('aria-label', 'Chat assistant area');
-      document.body.appendChild(root);
-    }
-
-    let fallback = document.getElementById(CHATKIT_CONFIG.fallbackId);
-
-    if (!fallback) {
-      fallback = document.createElement('p');
-      fallback.id = CHATKIT_CONFIG.fallbackId;
-      fallback.textContent = 'Chat is currently unavailable. Please use the contact links in the footer.';
-      root.appendChild(fallback);
-    }
-
-    return { root, fallback };
-  };
-
-  const hideFallback = (fallback) => {
-    fallback.hidden = true;
-  };
-
-  const showFallback = (fallback, message) => {
-    fallback.hidden = false;
-    if (message) {
-      fallback.textContent = message;
-    }
-  };
-
-  const loadChatKitScript = () =>
-    new Promise((resolve, reject) => {
-      if (window.ChatKit) {
-        resolve(window.ChatKit);
-        return;
-      }
-
-      const existing = document.querySelector('script[data-chatkit-script="true"]');
-
-      if (existing) {
-        existing.addEventListener('load', () => resolve(window.ChatKit));
-        existing.addEventListener('error', reject);
-        return;
-      }
-
-      const script = document.createElement('script');
-      script.src = 'https://cdn.platform.openai.com/deployments/chatkit/chatkit.js';
-      script.async = true;
-      script.dataset.chatkitScript = 'true';
-      script.addEventListener('load', () => resolve(window.ChatKit));
-      script.addEventListener('error', reject);
-      document.head.appendChild(script);
-    });
-
-  const initChatKit = async () => {
-    const chatConfig = getChatConfig();
-
-    if (!chatConfig.enabled) {
-      return;
-    }
-
-    const { fallback } = ensureChatKitArea();
-
-    if (!chatConfig.domainKey) {
-      showFallback(fallback, 'Chat is enabled, but no domain key is configured.');
-      return;
-    }
-
-    if (!chatConfig.owner || chatConfig.owner !== CHATKIT_CONFIG.expectedOwner) {
-      showFallback(fallback, 'Chat is disabled because this page is not configured for an approved owner.');
-      return;
-    }
-
-    try {
-      const chatkit = await loadChatKitScript();
-
-      if (!chatkit || typeof chatkit.create !== 'function') {
-        showFallback(fallback);
-        return;
-      }
-
-      hideFallback(fallback);
-      chatkit.create({
-        mount: `#${CHATKIT_CONFIG.rootId}`,
-        api: {
-          domainKey: chatConfig.domainKey,
-        },
-      });
-    } catch (error) {
-      showFallback(fallback);
-      console.error('ChatKit failed to load:', error);
-    }
-  };
-
-  // ==================================================
   // App initialization
   // ==================================================
   renderHeader();
+  initNavDropdowns();
   renderFooter();
   initChatKit();
 })();
