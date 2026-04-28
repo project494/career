@@ -16,7 +16,7 @@
   // Detect whether current page is nested so links resolve.
   // ==================================================
   const pathParts = window.location.pathname.split('/').filter(Boolean);
-  const isNestedPage = ['work', 'education', 'projects'].includes(pathParts[pathParts.length - 2]);
+  const isNestedPage = ['work', 'education', 'projects', 'certifications'].includes(pathParts[pathParts.length - 2]);
   const prefix = isNestedPage ? '../' : '';
 
   // ==================================================
@@ -36,6 +36,9 @@
     coding: `${prefix}projects/coding-projects.html`,
     graphics: `${prefix}projects/graphics-portfolio.html`,
     writing: `${prefix}projects/writing-samples.html`,
+    certifications: `${prefix}certifications/index.html`,
+    pmp: `${prefix}certifications/pmp.html`,
+    lifeguard: `${prefix}certifications/lifeguard.html`,
   };
 
   const getAriaCurrent = (href) => {
@@ -149,6 +152,29 @@
                   <a href="${links.coding}" role="menuitem"${getAriaCurrent(links.coding)}>Coding Projects</a>
                   <a href="${links.graphics}" role="menuitem"${getAriaCurrent(links.graphics)}>Graphics Portfolio</a>
                   <a href="${links.writing}" role="menuitem"${getAriaCurrent(links.writing)}>Writing Samples</a>
+                </div>
+              </li>
+
+              <!-- Certifications -->
+              <li class="nav-group">
+                <button
+                  class="group-label"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="nav-panel-certifications"
+                >
+                  Certifications
+                </button>
+                <div
+                  id="nav-panel-certifications"
+                  class="dropdown-panel"
+                  role="menu"
+                  aria-label="Certification pages"
+                >
+                  <a href="${links.certifications}" role="menuitem"${getAriaCurrent(links.certifications)}>All Certifications</a>
+                  <a href="${links.pmp}" role="menuitem"${getAriaCurrent(links.pmp)}>PMP</a>
+                  <a href="${links.lifeguard}" role="menuitem"${getAriaCurrent(links.lifeguard)}>Lifeguard</a>
                 </div>
               </li>
             </ul>
@@ -273,6 +299,13 @@
           <a href="${links.coding}">Coding Projects</a>
           <a href="${links.graphics}">Graphics Portfolio</a>
           <a href="${links.writing}">Writing Samples</a>
+        </section>
+
+        <section>
+          <h2>Certifications</h2>
+          <a href="${links.certifications}">All Certifications</a>
+          <a href="${links.pmp}">PMP</a>
+          <a href="${links.lifeguard}">Lifeguard</a>
         </section>
       </nav>
 
