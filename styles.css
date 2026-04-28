@@ -156,7 +156,7 @@ a:focus-visible {
   box-shadow: var(--shadow);
 }
 
-.nav-group:hover .dropdown-panel,
+.nav-group.is-open .dropdown-panel,
 .nav-group:focus-within .dropdown-panel {
   display: grid;
 }

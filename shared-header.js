@@ -62,8 +62,16 @@
               <li><a href="${links.home}">Home</a></li>
 
               <li class="nav-group">
-                <button class="group-label" type="button" aria-haspopup="true">Education</button>
-                <div class="dropdown-panel" role="menu" aria-label="Education pages">
+                <button
+                  class="group-label"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="nav-panel-education"
+                >
+                  Education
+                </button>
+                <div id="nav-panel-education" class="dropdown-panel" role="menu" aria-label="Education pages">
                   <a href="${links.highSchool}" role="menuitem">Gotham High School</a>
                   <a href="${links.university}" role="menuitem">University of Iowa</a>
                   <a href="${links.communityCollege}" role="menuitem">Community College</a>
@@ -71,8 +79,16 @@
               </li>
 
               <li class="nav-group">
-                <button class="group-label" type="button" aria-haspopup="true">Work Roles</button>
-                <div class="dropdown-panel" role="menu" aria-label="Work role pages">
+                <button
+                  class="group-label"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="nav-panel-work"
+                >
+                  Work Roles
+                </button>
+                <div id="nav-panel-work" class="dropdown-panel" role="menu" aria-label="Work role pages">
                   <a href="${links.work1}" role="menuitem">Career 1</a>
                   <a href="${links.work2}" role="menuitem">Career 2</a>
                   <a href="${links.work3}" role="menuitem">Career 3</a>
@@ -83,8 +99,16 @@
               </li>
 
               <li class="nav-group">
-                <button class="group-label" type="button" aria-haspopup="true">Personal Projects</button>
-                <div class="dropdown-panel" role="menu" aria-label="Project pages">
+                <button
+                  class="group-label"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="nav-panel-projects"
+                >
+                  Personal Projects
+                </button>
+                <div id="nav-panel-projects" class="dropdown-panel" role="menu" aria-label="Project pages">
                   <a href="${links.coding}" role="menuitem">Coding Projects</a>
                   <a href="${links.graphics}" role="menuitem">Graphics Portfolio</a>
                   <a href="${links.writing}" role="menuitem">Writing Samples</a>
@@ -96,6 +120,74 @@
       </header>
     `;
   };
+
+
+
+  // ==================================================
+  // Navigation dropdown interactions
+  // ==================================================
+  const initNavDropdowns = () => {
+    const navGroups = document.querySelectorAll('.nav-group');
+
+    if (!navGroups.length) {
+      return;
+    }
+
+    const closeAllPanels = () => {
+      navGroups.forEach((group) => {
+        group.classList.remove('is-open');
+        const button = group.querySelector('.group-label');
+
+        if (button) {
+          button.setAttribute('aria-expanded', 'false');
+        }
+      });
+    };
+
+    navGroups.forEach((group) => {
+      const button = group.querySelector('.group-label');
+
+      if (!button) {
+        return;
+      }
+
+      const toggleGroup = () => {
+        const isOpen = group.classList.contains('is-open');
+
+        closeAllPanels();
+
+        if (!isOpen) {
+          group.classList.add('is-open');
+          button.setAttribute('aria-expanded', 'true');
+        }
+      };
+
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        toggleGroup();
+      });
+
+      button.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleGroup();
+        }
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.nav-group')) {
+        closeAllPanels();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeAllPanels();
+      }
+    });
+  };
+
 
   // ==================================================
   // Footer renderer
@@ -219,6 +311,7 @@
   // App initialization
   // ==================================================
   renderHeader();
+  initNavDropdowns();
   renderFooter();
   initChatKit();
 })();
