@@ -407,6 +407,44 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.cert-card {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: center;
+  padding: 1rem;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: linear-gradient(160deg, #3d4656, #51453d);
+}
+
+.cert-card:hover,
+.cert-card:focus-visible {
+  border-color: var(--secondary);
+  transform: translateY(-2px);
+}
+
+.cert-icon {
+  width: 100%;
+  max-width: 130px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+}
+
+.cert-name {
+  font-weight: 800;
+  color: var(--text);
+}
+
 /* ==================================================
    Buttons and action rows
    ================================================== */
