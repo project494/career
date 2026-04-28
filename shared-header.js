@@ -239,31 +239,47 @@
 
     navGroups.forEach((group) => {
       const button = group.querySelector('.group-label');
+      const overviewLink = group.querySelector('.dropdown-panel a[href]');
 
       if (!button) {
         return;
       }
 
-      const toggleGroup = () => {
-        const isOpen = group.classList.contains('is-open');
-
+      const openGroup = () => {
         closeAllPanels();
-
-        if (!isOpen) {
-          group.classList.add('is-open');
-          button.setAttribute('aria-expanded', 'true');
-        }
+        group.classList.add('is-open');
+        button.setAttribute('aria-expanded', 'true');
       };
 
       button.addEventListener('click', (event) => {
         event.stopPropagation();
-        toggleGroup();
+
+        if (group.classList.contains('is-open') && overviewLink) {
+          window.location.href = overviewLink.href;
+          return;
+        }
+
+        openGroup();
       });
 
       button.addEventListener('keydown', (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          toggleGroup();
+
+          if (group.classList.contains('is-open') && overviewLink) {
+            window.location.href = overviewLink.href;
+            return;
+          }
+
+          openGroup();
+        }
+      });
+
+      group.addEventListener('mouseenter', openGroup);
+      group.addEventListener('mouseleave', () => {
+        if (!group.matches(':focus-within')) {
+          group.classList.remove('is-open');
+          button.setAttribute('aria-expanded', 'false');
         }
       });
     });
