@@ -42,7 +42,7 @@
               <li class="nav-group">
                 <button class="group-label" type="button" aria-haspopup="true">Education</button>
                 <div class="dropdown-panel" role="menu" aria-label="Education pages">
-                  <a href="${links.highSchool}" role="menuitem">High School</a>
+                  <a href="${links.highSchool}" role="menuitem">Gotham High School</a>
                   <a href="${links.university}" role="menuitem">University</a>
                   <a href="${links.communityCollege}" role="menuitem">Community College</a>
                 </div>
@@ -94,7 +94,7 @@
         </section>
         <section>
           <h2>Education</h2>
-          <a href="${links.highSchool}">High School</a>
+          <a href="${links.highSchool}">Gotham High School</a>
           <a href="${links.university}">University</a>
           <a href="${links.communityCollege}">Community College</a>
         </section>
