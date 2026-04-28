@@ -175,8 +175,8 @@ a:focus-visible {
 
 .dropdown-panel a:hover,
 .dropdown-panel a:focus-visible {
-  background: var(--accent-soft);
-  color: #ffffff;
+  background: #38bdf8;
+  color: #0b1320;
 }
 
 /* ==================================================
