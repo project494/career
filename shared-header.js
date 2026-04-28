@@ -16,7 +16,7 @@
   // Detect whether current page is nested so links resolve.
   // ==================================================
   const pathParts = window.location.pathname.split('/').filter(Boolean);
-  const isNestedPage = ['work', 'education', 'projects'].includes(pathParts[pathParts.length - 2]);
+  const isNestedPage = ['work', 'education', 'projects', 'certifications'].includes(pathParts[pathParts.length - 2]);
   const prefix = isNestedPage ? '../' : '';
 
   // ==================================================
@@ -24,6 +24,9 @@
   // ==================================================
   const links = {
     home: `${prefix}index.html`,
+    educationHome: `${prefix}education/index.html`,
+    workHome: `${prefix}work/index.html`,
+    projectsHome: `${prefix}projects/index.html`,
     work1: `${prefix}work/job-1.html`,
     work2: `${prefix}work/job-2.html`,
     work3: `${prefix}work/job-3.html`,
@@ -36,9 +39,23 @@
     coding: `${prefix}projects/coding-projects.html`,
     graphics: `${prefix}projects/graphics-portfolio.html`,
     writing: `${prefix}projects/writing-samples.html`,
+    certifications: `${prefix}certifications/index.html`,
+    pmp: `${prefix}certifications/pmp.html`,
+    lifeguard: `${prefix}certifications/lifeguard.html`,
   };
 
   const normalizePathname = (path) => path.replace(/\/$/, '') || '/';
+
+  const getAriaCurrent = (href) => {
+    const currentPathname = normalizePathname(window.location.pathname);
+
+    try {
+      const linkPathname = normalizePathname(new URL(href, window.location.origin).pathname);
+      return linkPathname === currentPathname ? ' aria-current="page"' : '';
+    } catch (error) {
+      return '';
+    }
+  };
 
   // ==================================================
   // Shared contact data
@@ -89,9 +106,10 @@
                   role="menu"
                   aria-label="Education pages"
                 >
-                  <a href="${links.highSchool}" role="menuitem">Gotham High School</a>
-                  <a href="${links.university}" role="menuitem">University of Iowa</a>
-                  <a href="${links.communityCollege}" role="menuitem">Community College</a>
+                  <a href="${links.educationHome}" role="menuitem"${getAriaCurrent(links.educationHome)}>Education Overview</a>
+                  <a href="${links.highSchool}" role="menuitem"${getAriaCurrent(links.highSchool)}>Gotham High School</a>
+                  <a href="${links.university}" role="menuitem"${getAriaCurrent(links.university)}>University of Iowa</a>
+                  <a href="${links.communityCollege}" role="menuitem"${getAriaCurrent(links.communityCollege)}>Community College</a>
                 </div>
               </li>
 
@@ -112,12 +130,13 @@
                   role="menu"
                   aria-label="Work role pages"
                 >
-                  <a href="${links.work1}" role="menuitem">Career 1</a>
-                  <a href="${links.work2}" role="menuitem">Career 2</a>
-                  <a href="${links.work3}" role="menuitem">Career 3</a>
-                  <a href="${links.work4}" role="menuitem">Career 4</a>
-                  <a href="${links.work5}" role="menuitem">Career 5</a>
-                  <a href="${links.work6}" role="menuitem">Career 6</a>
+                  <a href="${links.workHome}" role="menuitem"${getAriaCurrent(links.workHome)}>Work Overview</a>
+                  <a href="${links.work1}" role="menuitem"${getAriaCurrent(links.work1)}>Career 1</a>
+                  <a href="${links.work2}" role="menuitem"${getAriaCurrent(links.work2)}>Career 2</a>
+                  <a href="${links.work3}" role="menuitem"${getAriaCurrent(links.work3)}>Career 3</a>
+                  <a href="${links.work4}" role="menuitem"${getAriaCurrent(links.work4)}>Career 4</a>
+                  <a href="${links.work5}" role="menuitem"${getAriaCurrent(links.work5)}>Career 5</a>
+                  <a href="${links.work6}" role="menuitem"${getAriaCurrent(links.work6)}>Career 6</a>
                 </div>
               </li>
 
@@ -130,7 +149,7 @@
                   aria-expanded="false"
                   aria-controls="nav-panel-projects"
                 >
-                  Personal Projects
+                  Projects
                 </button>
                 <div
                   id="nav-panel-projects"
@@ -138,9 +157,33 @@
                   role="menu"
                   aria-label="Project pages"
                 >
-                  <a href="${links.coding}" role="menuitem">Coding Projects</a>
-                  <a href="${links.graphics}" role="menuitem">Graphics Portfolio</a>
-                  <a href="${links.writing}" role="menuitem">Writing Samples</a>
+                  <a href="${links.projectsHome}" role="menuitem"${getAriaCurrent(links.projectsHome)}>Projects Overview</a>
+                  <a href="${links.coding}" role="menuitem"${getAriaCurrent(links.coding)}>Coding Projects</a>
+                  <a href="${links.graphics}" role="menuitem"${getAriaCurrent(links.graphics)}>Graphics Portfolio</a>
+                  <a href="${links.writing}" role="menuitem"${getAriaCurrent(links.writing)}>Writing Samples</a>
+                </div>
+              </li>
+
+              <!-- Certifications -->
+              <li class="nav-group">
+                <button
+                  class="group-label"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="nav-panel-certifications"
+                >
+                  Certifications
+                </button>
+                <div
+                  id="nav-panel-certifications"
+                  class="dropdown-panel"
+                  role="menu"
+                  aria-label="Certification pages"
+                >
+                  <a href="${links.certifications}" role="menuitem"${getAriaCurrent(links.certifications)}>All Certifications</a>
+                  <a href="${links.pmp}" role="menuitem"${getAriaCurrent(links.pmp)}>PMP</a>
+                  <a href="${links.lifeguard}" role="menuitem"${getAriaCurrent(links.lifeguard)}>Lifeguard</a>
                 </div>
               </li>
             </ul>
@@ -268,6 +311,7 @@
 
         <section>
           <h2>Education</h2>
+          <a href="${links.educationHome}">Education Overview</a>
           <a href="${links.highSchool}">Gotham High School</a>
           <a href="${links.university}">University of Iowa</a>
           <a href="${links.communityCollege}">Community College</a>
@@ -275,6 +319,7 @@
 
         <section>
           <h2>Work Roles</h2>
+          <a href="${links.workHome}">Work Overview</a>
           <a href="${links.work1}">Career 1</a>
           <a href="${links.work2}">Career 2</a>
           <a href="${links.work3}">Career 3</a>
@@ -284,10 +329,18 @@
         </section>
 
         <section>
-          <h2>Personal Projects</h2>
+          <h2>Projects</h2>
+          <a href="${links.projectsHome}">Projects Overview</a>
           <a href="${links.coding}">Coding Projects</a>
           <a href="${links.graphics}">Graphics Portfolio</a>
           <a href="${links.writing}">Writing Samples</a>
+        </section>
+
+        <section>
+          <h2>Certifications</h2>
+          <a href="${links.certifications}">All Certifications</a>
+          <a href="${links.pmp}">PMP</a>
+          <a href="${links.lifeguard}">Lifeguard</a>
         </section>
       </nav>
 
