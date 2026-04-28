@@ -4,18 +4,18 @@
    Design tokens
    ================================================== */
 :root {
-  --bg: #acafb3;
-  --surface: #b7bbc4;
-  --surface-muted: #b2b6c2;
-  --text: #13203b;
-  --muted: #42506b;
-  --border: #8f96a5;
-  --primary: #6d28d9;
-  --primary-dark: #4338ca;
-  --secondary: #0d9488;
-  --accent-soft: #0ea5e9;
-  --accent-warm: #f97316;
-  --shadow: 0 14px 30px rgba(28, 36, 56, 0.2);
+  --bg: #1f242c;
+  --surface: #2b313a;
+  --surface-muted: #353c47;
+  --text: #eef2f7;
+  --muted: #c7d2e3;
+  --border: #4b5563;
+  --primary: #a78bfa;
+  --primary-dark: #c4b5fd;
+  --secondary: #5eead4;
+  --accent-soft: #38bdf8;
+  --accent-warm: #fb923c;
+  --shadow: 0 14px 30px rgba(2, 6, 23, 0.45);
 
   --font-body: 'Manrope', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-heading: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
@@ -36,7 +36,7 @@ html {
 body {
   margin: 0;
   color: var(--text);
-  background: radial-gradient(circle at top right, #dbeafe, var(--bg));
+  background: radial-gradient(circle at top right, #3b4453, var(--bg));
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.65;
@@ -66,7 +66,7 @@ a:focus-visible {
   z-index: 1000;
   padding: 0.5rem 0.8rem;
   color: var(--text);
-  background: #f9fafb;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 0.5rem;
 }
@@ -200,13 +200,13 @@ a:focus-visible {
   display: grid;
   gap: 1rem;
   padding: clamp(1.5rem, 4vw, 3rem);
-  background: linear-gradient(145deg, #dbeafe 0%, #c4b5fd 45%, var(--surface-muted) 100%);
+  background: linear-gradient(145deg, #394252 0%, #3f3b58 45%, var(--surface-muted) 100%);
 }
 
 .hero h1 {
   max-width: 15ch;
   margin: 0;
-  color: #1e1b4b;
+  color: var(--text);
   font-size: clamp(2.1rem, 6vw, 4.5rem);
   line-height: 1.02;
 }
@@ -238,7 +238,7 @@ a:focus-visible {
 .card h1,
 .card h2 {
   margin: 0 0 0.7rem;
-  color: #1e1b4b;
+  color: var(--text);
 }
 
 .section :last-child,
@@ -263,7 +263,7 @@ a:focus-visible {
 .tile {
   min-height: 100%;
   padding: 1rem;
-  background: linear-gradient(160deg, #dbeafe, #fde68a);
+  background: linear-gradient(160deg, #3d4656, #51453d);
   border: 1px solid var(--border);
   border-radius: 0.65rem;
 }
@@ -378,8 +378,8 @@ a:focus-visible {
 }
 
 .button.secondary {
-  color: #dbeafe;
-  background: rgba(255, 255, 255, 0.35);
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.08);
   border-color: #7dd3fc;
 }
 
@@ -485,8 +485,8 @@ footer {
   padding: 0.9rem 1rem;
   border: 1px solid var(--border);
   border-radius: 0.7rem;
-  background: #e2e8f0;
-  color: #1e293b;
+  background: var(--surface);
+  color: var(--text);
 }
 
 .contact-strip p {
@@ -520,7 +520,7 @@ footer {
 .site-footer__grid h2 {
   margin: 0 0 0.35rem;
   font-size: 1rem;
-  color: #1e1b4b;
+  color: var(--text);
 }
 
 .site-footer__grid section {
