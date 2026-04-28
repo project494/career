@@ -203,6 +203,34 @@ a:focus-visible {
   background: linear-gradient(145deg, #394252 0%, #3f3b58 45%, var(--surface-muted) 100%);
 }
 
+.hero-profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.headshot-placeholder {
+  width: clamp(4.5rem, 10vw, 6rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px dashed var(--border);
+  display: grid;
+  place-items: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.profile-name {
+  margin: 0;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  color: #1e1b4b;
+}
+
 .hero h1 {
   max-width: 15ch;
   margin: 0;
