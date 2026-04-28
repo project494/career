@@ -230,19 +230,19 @@ a:focus-visible {
 .hero-profile-header {
   display: inline-flex;
   align-items: center;
+  justify-self: end;
   gap: 0.9rem;
 }
 
 .headshot-placeholder {
-  width: clamp(4.5rem, 10vw, 6rem);
+  width: clamp(13.5rem, 30vw, 18rem);
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 2px dashed var(--border);
+  border: 3px solid rgba(255, 255, 255, 0.65);
   display: grid;
   place-items: center;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--muted);
+  object-fit: cover;
+  object-position: center;
   background: rgba(255, 255, 255, 0.4);
 }
 
