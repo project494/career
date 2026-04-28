@@ -2,6 +2,14 @@
 
 Static multi-page resume website for career history, education, and portfolio highlights.
 
+## Architecture Decision
+
+This project is intentionally a **static multi-page site**.
+
+- Each page has a real `.html` file and normal anchor links.
+- Navigation and progressive enhancement are handled by `shared-header.js`.
+- There is no client-side SPA router or route rewriting requirement.
+
 ## Open Locally
 
 Open `index.html` in a browser, or serve the folder with any static file server. The site does not require a build step.
