@@ -1,5 +1,13 @@
+// ==================================================
+// Living Resume App Router
+// Handles client-side route mapping and page rendering.
+// ==================================================
+
 const main = document.getElementById('main-content');
 
+// --------------------------------------------------
+// Route table
+// --------------------------------------------------
 const sections = {
   '/': {
     title: 'Home',
@@ -13,6 +21,7 @@ const sections = {
           <a class="button button-secondary" href="/projects/coding-projects" data-route>View Projects</a>
         </div>
       </section>
+
       <section class="card">
         <h2>What to update next</h2>
         <ul>
@@ -25,6 +34,9 @@ const sections = {
   },
 };
 
+// --------------------------------------------------
+// Dynamic Work Experience Routes
+// --------------------------------------------------
 for (let i = 1; i <= 6; i += 1) {
   sections[`/work/job-${i}`] = {
     title: `Career ${i}`,
@@ -34,12 +46,23 @@ for (let i = 1; i <= 6; i += 1) {
         <h1>Career ${i}</h1>
         <p class="muted">Replace with your company, title, and timeframe.</p>
       </section>
-      <section class="card"><h2>Role Snapshot</h2><p>Add role summary and scope.</p></section>
-      <section class="card"><h2>Impact Highlights</h2><p>Add measurable achievements here.</p></section>
+
+      <section class="card">
+        <h2>Role Snapshot</h2>
+        <p>Add role summary and scope.</p>
+      </section>
+
+      <section class="card">
+        <h2>Impact Highlights</h2>
+        <p>Add measurable achievements here.</p>
+      </section>
     `,
   };
 }
 
+// --------------------------------------------------
+// Dynamic Education Routes
+// --------------------------------------------------
 [
   ['/education/high-school', 'High School'],
   ['/education/university', 'University'],
@@ -53,11 +76,18 @@ for (let i = 1; i <= 6; i += 1) {
         <h1>${title}</h1>
         <p class="muted">Add institution name, dates, and major highlights.</p>
       </section>
-      <section class="card"><h2>Program Overview</h2><p>Add program details and key milestones.</p></section>
+
+      <section class="card">
+        <h2>Program Overview</h2>
+        <p>Add program details and key milestones.</p>
+      </section>
     `,
   };
 });
 
+// --------------------------------------------------
+// Dynamic Project Routes
+// --------------------------------------------------
 [
   ['/projects/coding-projects', 'Coding Projects'],
   ['/projects/graphics-portfolio', 'Graphics Portfolio'],
@@ -71,30 +101,54 @@ for (let i = 1; i <= 6; i += 1) {
         <h1>${title}</h1>
         <p class="muted">Add your best examples and links.</p>
       </section>
-      <section class="card"><h2>Featured Work</h2><p>Add entries with short descriptions and URLs.</p></section>
+
+      <section class="card">
+        <h2>Featured Work</h2>
+        <p>Add entries with short descriptions and URLs.</p>
+      </section>
     `,
   };
 });
 
+// --------------------------------------------------
+// Rendering
+// --------------------------------------------------
 function render(path) {
   const page = sections[path] || {
     title: 'Not Found',
-    html: '<section class="card"><h1>Page not found</h1><p>Use the navigation to continue.</p></section>',
+    html: `
+      <section class="card">
+        <h1>Page not found</h1>
+        <p>Use the navigation to continue.</p>
+      </section>
+    `,
   };
 
   document.title = `${page.title} | My Living Resume App`;
   main.innerHTML = page.html;
 }
 
+// --------------------------------------------------
+// Navigation handler for internal links
+// --------------------------------------------------
 function onRouteClick(event) {
   const link = event.target.closest('a[data-route]');
-  if (!link) return;
+
+  if (!link) {
+    return;
+  }
+
   event.preventDefault();
+
   const href = link.getAttribute('href');
   history.pushState({}, '', href);
   render(href);
 }
 
+// --------------------------------------------------
+// Bootstrapping listeners and initial route render
+// --------------------------------------------------
 window.addEventListener('popstate', () => render(window.location.pathname));
 document.addEventListener('click', onRouteClick);
+
 render(window.location.pathname);

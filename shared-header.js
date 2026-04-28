@@ -1,10 +1,20 @@
 (function renderSharedSiteChrome() {
+  // ==================================================
+  // Global constants
+  // ==================================================
   const CHATKIT_DOMAIN_KEY = 'domain_pk_69ee7bb808008196896566571ea5d4f60443c7953beeda43';
 
+  // ==================================================
+  // Path helpers
+  // Detect whether current page is nested so links resolve.
+  // ==================================================
   const pathParts = window.location.pathname.split('/').filter(Boolean);
   const isNestedPage = ['work', 'education', 'projects'].includes(pathParts[pathParts.length - 2]);
   const prefix = isNestedPage ? '../' : '';
 
+  // ==================================================
+  // Navigation and footer link map
+  // ==================================================
   const links = {
     home: `${prefix}index.html`,
     work1: `${prefix}work/job-1.html`,
@@ -21,24 +31,36 @@
     writing: `${prefix}projects/writing-samples.html`,
   };
 
+  // ==================================================
+  // Shared contact data
+  // ==================================================
   const contact = {
     email: 'you@example.com',
     phone: '(555) 123-4567',
     linkedin: 'https://www.linkedin.com/in/your-profile',
   };
 
+  // ==================================================
+  // Header renderer
+  // ==================================================
   const renderHeader = () => {
     const mount = document.getElementById('site-header');
-    if (!mount) return;
+
+    if (!mount) {
+      return;
+    }
 
     mount.innerHTML = `
       <header class="site-header">
         <a class="skip-link" href="#main-content">Skip to content</a>
+
         <div class="nav-ribbon">
           <a class="brand" href="${links.home}">My Living Resume</a>
+
           <nav aria-label="Primary navigation">
             <ul class="nav-list">
               <li><a href="${links.home}">Home</a></li>
+
               <li class="nav-group">
                 <button class="group-label" type="button" aria-haspopup="true">Education</button>
                 <div class="dropdown-panel" role="menu" aria-label="Education pages">
@@ -47,6 +69,7 @@
                   <a href="${links.communityCollege}" role="menuitem">Community College</a>
                 </div>
               </li>
+
               <li class="nav-group">
                 <button class="group-label" type="button" aria-haspopup="true">Work Roles</button>
                 <div class="dropdown-panel" role="menu" aria-label="Work role pages">
@@ -58,6 +81,7 @@
                   <a href="${links.work6}" role="menuitem">Career 6</a>
                 </div>
               </li>
+
               <li class="nav-group">
                 <button class="group-label" type="button" aria-haspopup="true">Personal Projects</button>
                 <div class="dropdown-panel" role="menu" aria-label="Project pages">
@@ -73,9 +97,15 @@
     `;
   };
 
+  // ==================================================
+  // Footer renderer
+  // ==================================================
   const renderFooter = () => {
     const mount = document.querySelector('.footer') || document.getElementById('site-footer');
-    if (!mount) return;
+
+    if (!mount) {
+      return;
+    }
 
     mount.className = 'footer site-footer';
     mount.innerHTML = `
@@ -87,17 +117,20 @@
         <span>|</span>
         <a href="${contact.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
       </div>
+
       <nav class="site-footer__grid" aria-label="Footer links">
         <section>
           <h2>Home</h2>
           <a href="${links.home}">Homepage</a>
         </section>
+
         <section>
           <h2>Education</h2>
           <a href="${links.highSchool}">High School</a>
           <a href="${links.university}">University</a>
           <a href="${links.communityCollege}">Community College</a>
         </section>
+
         <section>
           <h2>Work Roles</h2>
           <a href="${links.work1}">Career 1</a>
@@ -107,6 +140,7 @@
           <a href="${links.work5}">Career 5</a>
           <a href="${links.work6}">Career 6</a>
         </section>
+
         <section>
           <h2>Personal Projects</h2>
           <a href="${links.coding}">Coding Projects</a>
@@ -114,16 +148,25 @@
           <a href="${links.writing}">Writing Samples</a>
         </section>
       </nav>
+
       <p class="site-footer__copyright">Copyright 2026 My Living Resume.</p>
     `;
   };
 
+  // ==================================================
+  // ChatKit setup helpers
+  // ==================================================
   const ensureChatKitRoot = () => {
     let root = document.getElementById('chatkit-root');
-    if (root) return root;
+
+    if (root) {
+      return root;
+    }
+
     root = document.createElement('div');
     root.id = 'chatkit-root';
     document.body.appendChild(root);
+
     return root;
   };
 
@@ -135,6 +178,7 @@
       }
 
       const existing = document.querySelector('script[data-chatkit-script="true"]');
+
       if (existing) {
         existing.addEventListener('load', () => resolve(window.ChatKit));
         existing.addEventListener('error', reject);
@@ -155,7 +199,10 @@
 
     try {
       const chatkit = await loadChatKitScript();
-      if (!chatkit || typeof chatkit.create !== 'function') return;
+
+      if (!chatkit || typeof chatkit.create !== 'function') {
+        return;
+      }
 
       chatkit.create({
         mount: '#chatkit-root',
@@ -168,6 +215,9 @@
     }
   };
 
+  // ==================================================
+  // App initialization
+  // ==================================================
   renderHeader();
   renderFooter();
   initChatKit();
