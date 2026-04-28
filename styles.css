@@ -286,6 +286,23 @@ a:focus-visible {
   gap: 1rem;
 }
 
+.school-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.school-logo {
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
 .company-logo {
   width: 4.5rem;
   aspect-ratio: 1;
