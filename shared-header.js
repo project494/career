@@ -44,11 +44,14 @@
     lifeguard: `${prefix}certifications/lifeguard.html`,
   };
 
+  const normalizePathname = (path) => path.replace(/\/$/, '') || '/';
+
   const getAriaCurrent = (href) => {
+    const currentPathname = normalizePathname(window.location.pathname);
+
     try {
-      const hrefPath = new URL(href, window.location.origin).pathname.replace(/\/$/, '');
-      const currentPath = window.location.pathname.replace(/\/$/, '');
-      return hrefPath === currentPath ? ' aria-current="page"' : '';
+      const linkPathname = normalizePathname(new URL(href, window.location.origin).pathname);
+      return linkPathname === currentPathname ? ' aria-current="page"' : '';
     } catch (error) {
       return '';
     }
@@ -83,7 +86,7 @@
           <nav aria-label="Primary navigation">
             <ul class="nav-list">
               <li>
-                <a href="${links.home}"${getAriaCurrent(links.home)}>Home</a>
+                <a href="${links.home}">Home</a>
               </li>
 
               <!-- Education -->
@@ -188,6 +191,29 @@
         </div>
       </header>
     `;
+  };
+
+  const initActiveNavLinks = () => {
+    const navLinks = document.querySelectorAll('.site-header nav a[href]');
+    const currentPathname = normalizePathname(window.location.pathname);
+
+    navLinks.forEach((link) => {
+      try {
+        const linkPathname = normalizePathname(new URL(link.getAttribute('href'), window.location.origin).pathname);
+        const isActive = linkPathname === currentPathname;
+
+        link.classList.toggle('is-active', isActive);
+
+        if (isActive) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      } catch (error) {
+        link.classList.remove('is-active');
+        link.removeAttribute('aria-current');
+      }
+    });
   };
 
   // ==================================================
@@ -326,6 +352,7 @@
   // App initialization
   // ==================================================
   renderHeader();
+  initActiveNavLinks();
   initNavDropdowns();
   renderFooter();
   initChatKit();
